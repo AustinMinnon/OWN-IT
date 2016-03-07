@@ -7,8 +7,8 @@ import org.apache.commons.lang.WordUtils;
 public class Trick {
   public int id;
   public String name;
-  public String date;
   public int rating;
+  public String date;
   public int category_id;
 
   public int getId() {
@@ -33,10 +33,10 @@ public class Trick {
 
 
 
-  public Trick(String name, String date, int rating, int category_id) {
+  public Trick(String name, int rating, String date, int category_id) {
     this.name = name;
-    this.date = date;
     this.rating = rating;
+    this.date = date;
     this.category_id = category_id;
   }
 
@@ -54,7 +54,7 @@ public class Trick {
       return this.getName().equals(newTrick.getName()) &&
             this.getId() == newTrick.getId() &&
             this.getCategoryId() == newTrick.getCategoryId() &&
-            this.getDate() == newTrick.getDate() &&
+            this.getDate().equals(newTrick.getDate()) &&
             this.getRating() == newTrick.getRating();
     }
   }
@@ -63,6 +63,19 @@ public class Trick {
     String sql = "SELECT * FROM tricks";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Trick.class);
+    }
+  }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO tricks(name, rating, date, category_id) VALUES (:name, :rating, :date, :category_id)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", name)
+        .addParameter("rating", rating)
+        .addParameter("date", date)
+        .addParameter("category_id", category_id)
+        .executeUpdate()
+        .getKey();
     }
   }
 
