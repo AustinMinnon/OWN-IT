@@ -1,0 +1,34 @@
+<h2>$band.getName() Upcoming Concerts:</h2>
+
+<!-- col -->
+<form action='/band/update/$band.getId()' method='post'>
+    <label for="venue_id">Select a venue</label>
+    <select id='venue_id' name='venue_id' type='text' required>
+
+      #foreach($venue in $venues)
+        <option value="$venue.getId()">$venue.getName()</option>
+      #end
+    </select>
+    <button type='submit'>Add venue</button>
+</form>
+
+<form action="/band/deleteALL/$band.getId()" method="post">
+  <button class="btn btn-danger deleteband" type="submit">Delete $band.getName()</button>
+</form>
+
+
+<!-- col2 -->
+
+<form action="/band/update/name/$band.getId()" method="post">
+  <label for="name">Update Band Name</label>
+  <input id="name" name="name" type="text" required>
+  <button class="btn btn-success updateband" type="submit">Update</button>
+</form>
+
+<h2>List of Venues $band.getName() has played at</h2>
+#foreach ($venue in $band.getVenues())
+<a class="btn btn-primary btn-lg btn-block" href="/venue/$venue.getId()">$venue.getName()</a><br>
+#end
+<footer>
+  <br><h3><a href="/" class="bg-success">Go Home</a></h3>
+</footer>
