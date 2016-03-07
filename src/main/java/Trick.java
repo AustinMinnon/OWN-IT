@@ -22,7 +22,7 @@ public class Trick {
     return category_id;
   }
 
-  public int getDate() {
+  public String getDate() {
     return date;
   }
 

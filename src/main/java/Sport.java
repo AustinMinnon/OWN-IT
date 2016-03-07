@@ -33,8 +33,36 @@ public class Sport {
      }
    }
 
+   @Override
+   public boolean equals(Object otherSport) {
+     if (!(otherSport instanceof Sport)) {
+       return false;
+     } else {
+       Sport newSport = (Sport) otherSport;
+       return this.getName().equals(newSport.getName()) &&
+       this.getUserId() == (newSport.getUserId());
+     }
+   }
 
+   public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO sports(name, user_id) VALUES (:name, :user_id)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", this.name)
+        .addParameter("user_id", this.user_id)
+        .executeUpdate()
+        .getKey();
+    }
+   }
 
-
+   public static Sport find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM sports where id=:id";
+      Sport sport = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Sport.class);
+      return sport;
+    }
+  }
 
 }
