@@ -180,6 +180,15 @@ public class Trick {
     }
   }
 
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteQuery = "DELETE FROM tricks WHERE id = :id;";
+      con.createQuery(deleteQuery)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
   public void addCategory(Category category ) {
       try(Connection con = DB.sql2o.open()) {
         String sql = "INSERT INTO tricks (category_id) VALUES (:category_id)";

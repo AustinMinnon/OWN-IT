@@ -57,5 +57,13 @@ public class TrickTest {
     assertTrue(myTrick.equals(savedTrick));
   }
 
+  @Test
+  public void delete_deletesTrickFromDatabase() {
+    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 2);
+    myTrick.save();
+    myTrick.delete();
+    assertEquals(Trick.all().size(), 0);
+  }
+
 
 }

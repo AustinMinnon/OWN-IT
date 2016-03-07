@@ -60,7 +60,7 @@ public class Category {
     }
   }
 
-  public void update(String name) {
+  public void updateName(String name) {
     this.name = name;
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE categories SET name = :name WHERE id = :id";
@@ -68,6 +68,15 @@ public class Category {
         .addParameter("name", name)
         .addParameter("id", id)
         .executeUpdate();
+    }
+  }
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteQuery = "DELETE FROM categories WHERE id = :id;";
+      con.createQuery(deleteQuery)
+      .addParameter("id", id)
+      .executeUpdate();
     }
   }
 

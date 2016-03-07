@@ -8,10 +8,10 @@ public class CategoryTest {
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
-  // @Test
-  // public void all_emptyAtFirst() {
-  // assertEquals(Category.all().size(), 0);
-  // }
+  @Test
+  public void all_emptyAtFirst() {
+  assertEquals(Category.all().size(), 0);
+  }
 
 
   @Test
@@ -32,7 +32,7 @@ public class CategoryTest {
   public void update_updatesNameIntoDatabase_true() {
     Category myCategory = new Category("Flatground",1);
     myCategory.save();
-    myCategory.update("Jumps");
+    myCategory.updateName("Jumps");
     assertEquals(myCategory.getName(), "Jumps");
   }
 
@@ -44,5 +44,11 @@ public class CategoryTest {
     assertTrue(myCategory.equals(savedCategory));
   }
 
-
+  @Test
+  public void delete_deletesCategoryFromDatabase() {
+    Category myCategory = new Category("Flatground",1);
+    myCategory.save();
+    myCategory.delete();
+    assertEquals(Category.all().size(), 0);
+  }
 }
