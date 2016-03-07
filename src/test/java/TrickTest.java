@@ -15,16 +15,44 @@ public class TrickTest {
 
   @Test
   public void equals_returnsTrueIfTricksAretheSame() {
-    Trick firstTrick = new Trick("Kickflip", 1, "2016-05-08", 1);
-    Trick secondTrick = new Trick("Kickflip", 1, "2016-05-08", 1);
+    Trick firstTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 2);
+    Trick secondTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 2);
     assertTrue(firstTrick.equals(secondTrick));
   }
 
   @Test
   public void save_savesIntoDatabase_true() {
-    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1);
+    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 2);
     myTrick.save();
     Trick savedTrick = Trick.all().get(0);
     assertTrue(savedTrick.equals(myTrick));
   }
+
+  @Test
+  public void updateName_updatesNameIntoDatabase_true() {
+    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 2);
+    myTrick.save();
+    myTrick.updateName("Ollie");
+    assertEquals(myTrick.getName(), "Ollie");
+  }
+
+  @Test
+  public void update_updatesALLIntoDatabase_true() {
+    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 2);
+    myTrick.save();
+    myTrick.updateAll("Ollie", 2, "2016-06-08", 2, 1, 2);
+    assertEquals(myTrick.getName(), "Ollie");
+    assertEquals(myTrick.getDate(), "2016-06-08");
+    assertEquals(myTrick.getRating(), 2);
+    assertEquals(myTrick.getCategoryId(), 2);
+  }
+
+  @Test
+  public void find_findTrickInDatabase_true() {
+    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 2);
+    myTrick.save();
+    Trick savedTrick = Trick.all().get(0);
+    assertTrue(myTrick.equals(savedTrick));
+  }
+
 }

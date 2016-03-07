@@ -27,11 +27,20 @@ public class CategoryTest {
     assertTrue(Category.all().get(0).equals(myCategory));
   }
 
-  // @Test
-  // public void find_findBandInDatabase_true() {
-  //   Band myBand = new Band("The Ramones");
-  //   myBand.save();
-  //   Band savedBand = Band.find(myBand.getId());
-  //   assertTrue(myBand.equals(savedBand));
-  // }
+  @Test
+  public void update_updatesNameIntoDatabase_true() {
+    Category myCategory = new Category("Flatground",1);
+    myCategory.save();
+    myCategory.update("Jumps");
+    assertEquals(myCategory.getName(), "Jumps");
+  }
+
+  @Test
+  public void find_findCategoryInDatabase_true() {
+    Category myCategory = new Category("Flatground",1);
+    myCategory.save();
+    Category savedCategory = Category.find(myCategory.getId());
+    assertTrue(myCategory.equals(savedCategory));
+  }
+
 }
