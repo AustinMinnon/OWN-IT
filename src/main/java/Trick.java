@@ -8,6 +8,7 @@ public class Trick {
   public int id;
   public String name;
   public String date;
+  public int rating;
   public int category_id;
 
   public int getId() {
@@ -18,17 +19,24 @@ public class Trick {
     return name;
   }
 
+  public String getDate() {
+    return date;
+  }
+
+  public int getRating() {
+    return rating;
+  }
+
   public int getCategoryId() {
     return category_id;
   }
 
-  public int getDate() {
-    return date;
-  }
 
-  public Trick(String name, String date, int category_id) {
+
+  public Trick(String name, String date, int rating, int category_id) {
     this.name = name;
     this.date = date;
+    this.rating = rating;
     this.category_id = category_id;
   }
 
@@ -46,7 +54,16 @@ public class Trick {
       return this.getName().equals(newTrick.getName()) &&
             this.getId() == newTrick.getId() &&
             this.getCategoryId() == newTrick.getCategoryId() &&
-            this.getDate() == newTrick.getDate();
+            this.getDate() == newTrick.getDate() &&
+            this.getRating() == newTrick.getRating();
     }
   }
+
+  public static List<Trick> all() {
+    String sql = "SELECT * FROM tricks";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(Trick.class);
+    }
+  }
+
 }
