@@ -26,7 +26,12 @@ public class Sport {
     return id;
   }
 
- public static List <Sport>
+  public static List<Sport> all() {
+     String sql = "SELECT * FROM sports";
+     try(Connection con = DB.sql2o.open()) {
+       return con.createQuery(sql).executeAndFetch(Sport.class);
+     }
+   }
 
 
 
