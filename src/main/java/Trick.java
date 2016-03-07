@@ -31,10 +31,6 @@ public class Trick {
     return category_id;
   }
 
-  public int getDate() {
-    return date;
-  }
-
   public Trick(String name, String date, int rating, int category_id) {
     this.name = name;
     this.date = date;
