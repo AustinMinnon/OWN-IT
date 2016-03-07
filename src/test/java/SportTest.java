@@ -8,8 +8,31 @@ public class SportTest {
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
-  // @Test
-  // public void all_emptyAtFirst() {
-  //   assertEquals(Sport.all().size(), 0);
-  // }
+
+  @Test
+  public void all_emptyAtFirst() {
+    assertEquals(Sport.all().size(), 0);
+  }
+
+  @Test
+  public void equals_returnsTrueIfNamesAretheSame() {
+    Sport firstSport = new Sport("BMX", 1);
+    Sport secondSport = new Sport("BMX", 1);
+    assertTrue(firstSport.equals(secondSport));
+  }
+
+  @Test
+  public void save_savesIntoDatabase_true() {
+    Sport newSport = new Sport("BMX", 1);
+    newSport.save();
+    assertTrue(Sport.all().get(0).equals(newSport));
+  }
+
+  @Test
+  public void find_findsSportInDB_true() {
+    Sport newSport = new Sport("BMX", 1);
+    newSport.save();
+    Sport savedSport = Sport.find(newSport.getId());
+    assertTrue(newSport.equals(savedSport));
+  }
 }

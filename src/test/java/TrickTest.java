@@ -8,6 +8,7 @@ public class TrickTest {
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
+
   @Test
   public void all_emptyAtFirst() {
     assertEquals(Trick.all().size(), 0);
@@ -27,4 +28,5 @@ public class TrickTest {
     Trick savedTrick = Trick.all().get(0);
     assertTrue(savedTrick.equals(myTrick));
   }
+
 }
