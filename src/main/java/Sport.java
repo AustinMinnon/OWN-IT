@@ -26,6 +26,9 @@ public class Sport {
     return id;
   }
 
+ public static List <Sport>
+
+
 
 
 }
