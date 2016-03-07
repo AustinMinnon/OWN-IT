@@ -35,8 +35,7 @@ SET default_with_oids = false;
 
 CREATE TABLE categories (
     id integer NOT NULL,
-    name character varying,
-    sport_id integer
+    name character varying
 );
 
 
@@ -69,8 +68,7 @@ ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 CREATE TABLE sports (
     id integer NOT NULL,
-    name character varying,
-    user_id integer
+    name character varying
 );
 
 
@@ -200,7 +198,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY categories (id, name, sport_id) FROM stdin;
+COPY categories (id, name) FROM stdin;
 \.
 
 
@@ -215,7 +213,7 @@ SELECT pg_catalog.setval('categories_id_seq', 1, false);
 -- Data for Name: sports; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY sports (id, name, user_id) FROM stdin;
+COPY sports (id, name) FROM stdin;
 \.
 
 
