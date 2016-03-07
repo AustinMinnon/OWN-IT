@@ -49,4 +49,15 @@ public class Category {
     }
   }
 
+    public void save() {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "INSERT INTO categories(name, sport_id) VALUES (:name, :sport_id)";
+        this.id = (int) con.createQuery(sql, true)
+          .addParameter("name", name)
+          .addParameter("sport_id", sport_id)
+          .executeUpdate()
+          .getKey();
+      }
+    }
+
 }
