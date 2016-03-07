@@ -8,6 +8,7 @@ public class SportTest {
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
+
   @Test
   public void all_emptyAtFirst() {
     assertEquals(Sport.all().size(), 0);
@@ -26,7 +27,7 @@ public class SportTest {
     newSport.save();
     assertTrue(Sport.all().get(0).equals(newSport));
   }
-  
+
   @Test
   public void find_findsSportInDB_true() {
     Sport newSport = new Sport("BMX", 1);
