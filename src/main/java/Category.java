@@ -41,4 +41,12 @@ public class Category {
             this.getSportId() == newCategory.getSportId();
     }
   }
+
+  public static List<Category> all() {
+    String sql = "SELECT * FROM categories";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(Category.class);
+    }
+  }
+
 }
