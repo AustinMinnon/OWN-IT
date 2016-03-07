@@ -1,3 +1,44 @@
-import java.util.List;
 import org.sql2o.*;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
+import org.apache.commons.lang.WordUtils;
+
+public class Category {
+  public int id;
+  public String name;
+  public int sport_id;
+
+  public int getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getSportId() {
+    return sport_id;
+  }
+
+  public void firstToUppercase() {
+    this.name = WordUtils.capitalize(this.name.toLowerCase());
+  }
+
+  public Category(String name, int sport_id) {
+    this.name = name;
+    this.sport_id = sport_id;
+  }
+
+  @Override
+  public boolean equals(Object otherCategory){
+    if (!(otherCategory  instanceof Category)) {
+      return false;
+    } else {
+      Category newCategory = (Category) otherCategory;
+      return this.getName().equals(newCategory.getName()) &&
+            this.getId() == newCategory.getId() &&
+            this.getSportId() == newCategory.getSportId();
+    }
+  }
+}
