@@ -10,7 +10,7 @@ public class CategoryTest {
 
   @Test
   public void all_emptyAtFirst() {
-    assertEquals(Category.all().size(), 0);
+  assertEquals(Category.all().size(), 0);
   }
 
   @Test
