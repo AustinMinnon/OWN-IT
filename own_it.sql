@@ -106,7 +106,9 @@ CREATE TABLE tricks (
     name character varying,
     rating integer,
     date character varying,
-    category_id integer
+    category_id integer,
+    user_id integer,
+    sport_id integer
 );
 
 
@@ -228,7 +230,7 @@ SELECT pg_catalog.setval('sports_id_seq', 1, false);
 -- Data for Name: tricks; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY tricks (id, name, rating, date, category_id) FROM stdin;
+COPY tricks (id, name, rating, date, category_id, user_id, sport_id) FROM stdin;
 \.
 
 

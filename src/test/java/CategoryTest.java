@@ -13,10 +13,36 @@ public class CategoryTest {
   // assertEquals(Category.all().size(), 0);
   // }
 
-  // @Test
-  // public void equals_returnsTrueIfNamesAretheSame() {
-  //   Category firstCategory = new Category("BMX",1);
-  //   Category secondCategory = new Category("BMX",1);
-  //   assertTrue(firstCategory.equals(secondCategory));
-  // }
+
+  @Test
+  public void equals_returnsTrueIfNamesAretheSame() {
+    Category firstCategory = new Category("BMX",1);
+    Category secondCategory = new Category("BMX",1);
+    assertTrue(firstCategory.equals(secondCategory));
+  }
+
+  @Test
+  public void save_savesIntoDatabase_true() {
+    Category myCategory = new Category("Flatground",1);
+    myCategory.save();
+    assertTrue(Category.all().get(0).equals(myCategory));
+  }
+
+  @Test
+  public void update_updatesNameIntoDatabase_true() {
+    Category myCategory = new Category("Flatground",1);
+    myCategory.save();
+    myCategory.update("Jumps");
+    assertEquals(myCategory.getName(), "Jumps");
+  }
+
+  @Test
+  public void find_findCategoryInDatabase_true() {
+    Category myCategory = new Category("Flatground",1);
+    myCategory.save();
+    Category savedCategory = Category.find(myCategory.getId());
+    assertTrue(myCategory.equals(savedCategory));
+  }
+
+
 }
