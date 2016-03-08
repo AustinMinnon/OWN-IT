@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.ArrayList;
 
 import spark.ModelAndView;
@@ -25,6 +26,28 @@ public class App {
       model.put("template", "templates/home.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/add/skate", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      List<Trick> tricks = Trick.all();
+      model.put("tricks", tricks);
+      model.put("template", "templates/tricks.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    // get("/bmx/:user_id", (request, response) -> {
+    //   HashMap<String, Object> model = new HashMap<String, Object>();
+    //   int user_id = Integer.parseInt(request.params(":user_id"));
+    //   User user = User.find(user_id);
+    //   int trick_id = Integer.parseInt(request.queryParams("trickId"));
+    //   Trick trick = Trick.find(trick_id);
+    //   model.put("user", user);
+    //   model.put("tricks", Trick.all());
+    //   model.put("trick", trick);
+    //   model.put("userTricks", trick.userTricks());
+    //   model.put("template", "templates/bmx.vtl");
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
 
     post("/", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
