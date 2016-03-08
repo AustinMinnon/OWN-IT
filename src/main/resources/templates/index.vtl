@@ -1,50 +1,20 @@
-<div class="row">
-<div class="col-sm-6">
-  <form action="/add/band" method="post">
-    <label for="name">Add Bands</label>
-    <input id="name" name="name" type="text" required>
+<h1>Own It!</h2>
 
-    <button class="btn btn-success bandbtn" type="submit">Add Band</button>
-  </form>
-</div>
+<form action='/home' method='post'>
+  <label for="loginUsername">Enter Your Name</label>
+  <input id="loginUsername" name="loginUsername" type="text">
+  <button type='submit'class='btn btn-primary'>Login</button>
+</form>
 
-<div class="col-sm-6">
-  <form action="/add/venue" method="post">
-    <label for="name">Add Venue</label>
-    <input id="name" name="name" type="text" required>
-    <button class="btn btn-success venuebtn" type="submit">Add Venue</button>
-  </form>
-</div>
-</div>
+<h2>New User</h2>
+<form action='/' method='post'>
+  <label for="username">Enter A Name</label>
+  <input id="username" name="username" type="text">
+  <button type='submit' class='btn btn-success'>Add Me</button>
+</form>
 
-<div class="row">
-<div class="col-sm-6">
-  <div>
-    <form action ='/band/delete' method ='post'>
-      <button type ='submit' class=".btn btn-danger btn-xs allbands"> Delete ALL Bands </button>
-    </form>
-    <h3>List of all Bands</h3>
-   #foreach ($band in $bands)
-   <a class="btn btn-info btn-md btn-block" href="/band/$band.getId()">$band.getName()</a><br>
-   <form action ='/band/deleteAll' method ='post'>
-     <button type ='submit' class=".btn btn-danger btn-sm allbands">  Delete  </button>
-   </form>
-   #end
-  </div>
-</div>
-
-<div class="col-sm-6">
-  <div>
-    <form action ='/venue/delete' method ='post'>
-      <button type ='submit' class=".btn btn-danger btn-xs allvenues"> Delete ALL Venues </button>
-    </form>
-    <h3>List of all Venues</h3>
-   #foreach ($venue in $venues)
-   <a class="btn btn-warning btn-md btn-block" href="/venue/$venue.getId()">$venue.getName()</a><br>
-   <form action ='/venue/deleteAll' method ='post'>
-     <button type ='submit' class=".btn btn-danger btn-sm allbands">  Delete  </button>
-   </form>
-   #end
-  </div>
-</div>
-</div>
+#if ($duplicateuserrequested)
+  <p>That name is already in use. Please try a different name</p>
+#elseif (!($duplicateuserrequested))
+  <p>User Name Saved, Please Login</p>
+#end
