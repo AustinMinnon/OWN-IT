@@ -5,20 +5,14 @@ import org.apache.commons.lang.WordUtils;
 
 public class Sport {
   private String name;
-  private int user_id;
   private int id;
 
-  public Sport (String name, int user_id) {
+  public Sport (String name) {
     this.name = name;
-    this.user_id = user_id;
   }
 
   public String getName() {
     return name;
-  }
-
-  public int getUserId() {
-    return user_id;
   }
 
   public int getId() {
@@ -39,17 +33,15 @@ public class Sport {
     } else {
       Sport newSport = (Sport) otherSport;
       return this.getName().equals(newSport.getName()) &&
-      this.getId() == (newSport.getId()) &&
-      this.getUserId() == (newSport.getUserId());
+      this.getId() == (newSport.getId());
     }
   }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO sports(name, user_id) VALUES (:name, :user_id)";
+      String sql = "INSERT INTO sports(name) VALUES (:name)";
       this.id = (int) con.createQuery(sql, true)
       .addParameter("name", this.name)
-      .addParameter("user_id", this.user_id)
       .executeUpdate()
       .getKey();
     }

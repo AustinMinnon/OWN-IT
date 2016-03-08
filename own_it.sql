@@ -63,6 +63,39 @@ ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 
 --
+-- Name: ratings; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+--
+
+CREATE TABLE ratings (
+    id integer NOT NULL,
+    name character varying
+);
+
+
+ALTER TABLE ratings OWNER TO "Guest";
+
+--
+-- Name: ratings_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+--
+
+CREATE SEQUENCE ratings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE ratings_id_seq OWNER TO "Guest";
+
+--
+-- Name: ratings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+--
+
+ALTER SEQUENCE ratings_id_seq OWNED BY ratings.id;
+
+
+--
 -- Name: sports; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
@@ -102,11 +135,11 @@ ALTER SEQUENCE sports_id_seq OWNED BY sports.id;
 CREATE TABLE tricks (
     id integer NOT NULL,
     name character varying,
-    rating integer,
     date character varying,
     category_id integer,
     user_id integer,
-    sport_id integer
+    sport_id integer,
+    rating_id integer
 );
 
 
@@ -177,6 +210,13 @@ ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
+ALTER TABLE ONLY ratings ALTER COLUMN id SET DEFAULT nextval('ratings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+--
+
 ALTER TABLE ONLY sports ALTER COLUMN id SET DEFAULT nextval('sports_id_seq'::regclass);
 
 
@@ -210,6 +250,21 @@ SELECT pg_catalog.setval('categories_id_seq', 1, false);
 
 
 --
+-- Data for Name: ratings; Type: TABLE DATA; Schema: public; Owner: Guest
+--
+
+COPY ratings (id, name) FROM stdin;
+\.
+
+
+--
+-- Name: ratings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+--
+
+SELECT pg_catalog.setval('ratings_id_seq', 1, false);
+
+
+--
 -- Data for Name: sports; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
@@ -228,7 +283,7 @@ SELECT pg_catalog.setval('sports_id_seq', 1, false);
 -- Data for Name: tricks; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY tricks (id, name, rating, date, category_id, user_id, sport_id) FROM stdin;
+COPY tricks (id, name, date, category_id, user_id, sport_id, rating_id) FROM stdin;
 \.
 
 
@@ -260,6 +315,14 @@ SELECT pg_catalog.setval('users_id_seq', 1, false);
 
 ALTER TABLE ONLY categories
     ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ratings_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+--
+
+ALTER TABLE ONLY ratings
+    ADD CONSTRAINT ratings_pkey PRIMARY KEY (id);
 
 
 --

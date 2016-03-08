@@ -7,7 +7,7 @@ import org.apache.commons.lang.WordUtils;
 public class Trick {
   private int id;
   private String name;
-  private int rating;
+  private int rating_id;
   private String date;
   private int category_id;
   private int sport_id;
@@ -25,8 +25,8 @@ public class Trick {
     return date;
   }
 
-  public int getRating() {
-    return rating;
+  public int getRatingId() {
+    return rating_id;
   }
 
   public int getCategoryId() {
@@ -41,9 +41,9 @@ public class Trick {
     return user_id;
   }
 
-  public Trick(String name, int rating, String date, int category_id, int sport_id, int user_id) {
+  public Trick(String name, int rating_id, String date, int category_id, int sport_id, int user_id) {
     this.name = name;
-    this.rating = rating;
+    this.rating_id = rating_id;
     this.date = date;
     this.category_id = category_id;
     this.sport_id = sport_id;
@@ -65,7 +65,7 @@ public class Trick {
             this.getId() == newTrick.getId() &&
             this.getCategoryId() == newTrick.getCategoryId() &&
             this.getDate().equals(newTrick.getDate()) &&
-            this.getRating() == newTrick.getRating() &&
+            this.getRatingId() == newTrick.getRatingId() &&
             this.getSportId() == newTrick.getSportId() &&
             this.getUserId() == newTrick.getUserId();
 
@@ -90,12 +90,12 @@ public class Trick {
     }
   }
 
-  public void updateRating(int rating) {
-    this.rating = rating;
+  public void updateRatingId(int rating_id) {
+    this.rating_id = rating_id;
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE tricks SET rating = :rating WHERE id = :id";
+      String sql = "UPDATE tricks SET rating_id = :rating_id WHERE id = :id";
       con.createQuery(sql)
-        .addParameter("rating", rating)
+        .addParameter("rating_id", rating_id)
         .addParameter("id", id)
         .executeUpdate();
     }
@@ -145,9 +145,9 @@ public class Trick {
     }
   }
 
-  public void updateAll(String name, int rating, String date, int category_id, int sport_id, int user_id){
+  public void updateAll(String name, int rating_id, String date, int category_id, int sport_id, int user_id){
     updateName(name);
-    updateRating(rating);
+    updateRatingId(rating_id);
     updateDate(date);
     updateCategoryId(category_id);
     updateCategoryId(sport_id);
@@ -167,10 +167,10 @@ public class Trick {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO tricks(name, rating, date, category_id, sport_id, user_id) VALUES (:name, :rating, :date, :category_id, :sport_id, :user_id)";
+      String sql = "INSERT INTO tricks(name, rating_id, date, category_id, sport_id, user_id) VALUES (:name, :rating_id, :date, :category_id, :sport_id, :user_id)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", name)
-        .addParameter("rating", rating)
+        .addParameter("rating_id", rating_id)
         .addParameter("date", date)
         .addParameter("category_id", category_id)
         .addParameter("sport_id", sport_id)

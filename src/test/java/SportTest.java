@@ -16,21 +16,21 @@ public class SportTest {
 
   @Test
   public void equals_returnsTrueIfNamesAretheSame() {
-    Sport firstSport = new Sport("BMX", 1);
-    Sport secondSport = new Sport("BMX", 1);
+    Sport firstSport = new Sport("BMX");
+    Sport secondSport = new Sport("BMX");
     assertTrue(firstSport.equals(secondSport));
   }
 
   @Test
   public void save_savesIntoDatabase_true() {
-    Sport newSport = new Sport("BMX", 1);
+    Sport newSport = new Sport("BMX");
     newSport.save();
     assertTrue(Sport.all().get(0).equals(newSport));
   }
 
   @Test
   public void find_findsSportInDB_true() {
-    Sport newSport = new Sport("BMX", 1);
+    Sport newSport = new Sport("BMX");
     newSport.save();
     Sport savedSport = Sport.find(newSport.getId());
     assertTrue(newSport.equals(savedSport));

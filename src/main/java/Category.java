@@ -7,7 +7,6 @@ import org.apache.commons.lang.WordUtils;
 public class Category {
   public int id;
   public String name;
-  public int sport_id;
 
   public int getId() {
     return id;
@@ -17,17 +16,12 @@ public class Category {
     return name;
   }
 
-  public int getSportId() {
-    return sport_id;
-  }
-
   public void firstToUppercase() {
     this.name = WordUtils.capitalize(this.name.toLowerCase());
   }
 
-  public Category(String name, int sport_id) {
+  public Category(String name) {
     this.name = name;
-    this.sport_id = sport_id;
   }
 
   @Override
@@ -37,8 +31,7 @@ public class Category {
     } else {
       Category newCategory = (Category) otherCategory;
       return this.getName().equals(newCategory.getName()) &&
-            this.getId() == newCategory.getId() &&
-            this.getSportId() == newCategory.getSportId();
+            this.getId() == newCategory.getId();
     }
   }
 
@@ -51,10 +44,9 @@ public class Category {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO categories(name, sport_id) VALUES (:name, :sport_id)";
+      String sql = "INSERT INTO categories(name) VALUES (:name)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", name)
-        .addParameter("sport_id", sport_id)
         .executeUpdate()
         .getKey();
     }

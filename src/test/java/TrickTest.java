@@ -45,7 +45,7 @@ public class TrickTest {
     myTrick.updateAll("Ollie", 2, "2016-06-08", 2, 1, 2);
     assertEquals(myTrick.getName(), "Ollie");
     assertEquals(myTrick.getDate(), "2016-06-08");
-    assertEquals(myTrick.getRating(), 2);
+    assertEquals(myTrick.getRatingId(), 2);
     assertEquals(myTrick.getCategoryId(), 2);
   }
 

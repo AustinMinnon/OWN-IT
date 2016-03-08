@@ -16,21 +16,21 @@ public class CategoryTest {
 
   @Test
   public void equals_returnsTrueIfNamesAretheSame() {
-    Category firstCategory = new Category("BMX",1);
-    Category secondCategory = new Category("BMX",1);
+    Category firstCategory = new Category("BMX");
+    Category secondCategory = new Category("BMX");
     assertTrue(firstCategory.equals(secondCategory));
   }
 
   @Test
   public void save_savesIntoDatabase_true() {
-    Category myCategory = new Category("Flatground",1);
+    Category myCategory = new Category("Flatground");
     myCategory.save();
     assertTrue(Category.all().get(0).equals(myCategory));
   }
 
   @Test
   public void update_updatesNameIntoDatabase_true() {
-    Category myCategory = new Category("Flatground",1);
+    Category myCategory = new Category("Flatground");
     myCategory.save();
     myCategory.updateName("Jumps");
     assertEquals(myCategory.getName(), "Jumps");
@@ -38,7 +38,7 @@ public class CategoryTest {
 
   @Test
   public void find_findCategoryInDatabase_true() {
-    Category myCategory = new Category("Flatground",1);
+    Category myCategory = new Category("Flatground");
     myCategory.save();
     Category savedCategory = Category.find(myCategory.getId());
     assertTrue(myCategory.equals(savedCategory));
@@ -46,7 +46,7 @@ public class CategoryTest {
 
   @Test
   public void delete_deletesCategoryFromDatabase() {
-    Category myCategory = new Category("Flatground",1);
+    Category myCategory = new Category("Flatground");
     myCategory.save();
     myCategory.delete();
     assertEquals(Category.all().size(), 0);
