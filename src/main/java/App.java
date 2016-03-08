@@ -34,10 +34,10 @@ public class App {
       String name = newUser.getName();
       if(!(duplicateUserRequested)) {
         newUser.save();
-        model.put("template", "templates/home.vtl");
+        model.put("template", "templates/index.vtl");
       } else {
       model.put("duplicateuserrequested", duplicateUserRequested);
-      model.put("template", "templates/index.vtl");
+      model.put("template", "templates/create-user.vtl");
       }
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -54,7 +54,7 @@ public class App {
         return null;
       }
     }
-    response.redirect("/");
+    response.redirect("/home");
     return null;
   });
 

@@ -1,0 +1,15 @@
+create-user.vtl
+
+<h2>New User</h2>
+<form action='/' method='post'>
+  <label for="username">Enter A Name</label>
+  <input id="username" name="username" type="text">
+  <button type='submit' class='btn btn-success'>Add Me</button>
+</form>
+
+
+#if ($duplicateuserrequested)
+  <p>That name is already in use. Please try a different name</p>
+#elseif (!($duplicateuserrequested))
+  <p>User Name Saved, Please Login</p>
+#end

@@ -1,20 +1,30 @@
-<h1>Own It!</h2>
+index.html
 
-<form action='/home' method='post'>
-  <label for="loginUsername">Enter Your Name</label>
-  <input id="loginUsername" name="loginUsername" type="text">
-  <button type='submit'class='btn btn-primary'>Login</button>
-</form>
+<div class="center">
+  <h1>Own It!</h2>
+<p class="login-label">Enter Your User Name</p>
+  <form action='/home' method='post'>
+    <input id="loginUsername" name="loginUsername" type="text">
+    <button type='submit'class='btn btn-primary'>Login</button>
+  </form>
 
-<h2>New User</h2>
-<form action='/' method='post'>
-  <label for="username">Enter A Name</label>
-  <input id="username" name="username" type="text">
-  <button type='submit' class='btn btn-success'>Add Me</button>
-</form>
-
-#if ($duplicateuserrequested)
-  <p>That name is already in use. Please try a different name</p>
-#elseif (!($duplicateuserrequested))
-  <p>User Name Saved, Please Login</p>
-#end
+  <a href="/">Create a user name</a>
+</div>
+<div class="row">
+  <h2 class="center">How to use Own It!</h2>
+  <div class="col-sm-4">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    </p>
+  </div>
+  <div class="col-sm-4">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    </p>
+  </div>
+  <div class="col-sm-4">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    </p>
+  </div>
+</div>
