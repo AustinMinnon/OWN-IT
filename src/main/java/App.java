@@ -27,15 +27,35 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/add/skate", (request,response) -> {
+    get("/add/trick", (request,response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
+      List<Category> categories = Category.all();
       List<Trick> tricks = Trick.all();
+      List<Sport> sports = Sport.all();
+      List<Rating> ratings = Rating.all();
+      model.put("ratings", ratings);
+      model.put("categories", categories);
       model.put("tricks", tricks);
-      model.put("template", "templates/tricks.vtl");
+      model.put("sports", sports);
+      model.put("template", "templates/trick.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // get("/bmx/:user_id", (request, response) -> {
+    post("/add/trick", (request, response) -> {
+      int categoryId = Integer.parseInt(request.queryParams("category_id"));
+      int sportId = Integer.parseInt(request.queryParams("sport_id"));
+      int trickRating = Integer.parseInt(request.queryParams("trickRating"));
+      String trickName = request.queryParams("trickName");
+      String trickDate = request.queryParams("trickDate");
+      Category category = Category.find(1);
+      Trick trick = new Trick (trickName, trickRating, trickDate, categoryId, sportId);
+
+      trick.save();
+      response.redirect("/add/trick");
+      return null;
+    });
+
+    // get(":user_id/bmx/", (request, response) -> {
     //   HashMap<String, Object> model = new HashMap<String, Object>();
     //   int user_id = Integer.parseInt(request.params(":user_id"));
     //   User user = User.find(user_id);
@@ -81,5 +101,61 @@ public class App {
     return null;
   });
 
+  //DELETE TRICK
+  post("/delete/trick/:id", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    int id = Integer.parseInt(request.queryParams("trickId"));
+    Trick.delete(id);
+    model.put("ratings", Rating.all());
+    model.put("categories", Category.all());
+    model.put("tricks", Trick.all());
+    model.put("sports", Sport.all());
+    model.put("template", "templates/trick.vtl");
+    return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+  // get("/updateSport/trick/:id", (request,response) -> {
+  //   HashMap<String, Object> model = new HashMap<String, Object>();
+  //   List<Category> categories = Category.all();
+  //   List<Trick> tricks = Trick.all();
+  //   List<Sport> sports = Sport.all();
+  //   List<Rating> ratings = Rating.all();
+  //   model.put("ratings", ratings);
+  //   model.put("categories", categories);
+  //   model.put("tricks", tricks);
+  //   model.put("sports", sports);
+  //   model.put("template", "templates/update.vtl");
+  //   return new ModelAndView(model, layout);
+  // }, new VelocityTemplateEngine());
+
+  get("update/trick/:id", (request,response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    int id = Integer.parseInt(request.queryParams("trickId"));
+    Trick currentTrick = Trick.find(id);
+    model.put("trick", currentTrick);
+    model.put("ratings", Rating.all());
+    model.put("categories", Category.all());
+    model.put("sports", Sport.all());
+    model.put("template", "templates/updateTrick.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+  post("/update/trick/:id", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    int trickId = Integer.parseInt(request.queryParams("trickId"));
+    int categoryId = Integer.parseInt(request.queryParams("category_id"));
+    int sportId = Integer.parseInt(request.queryParams("sport_id"));
+    int trickRating = Integer.parseInt(request.queryParams("trickRating"));
+    String trickName = request.queryParams("trickName");
+    String trickDate = request.queryParams("trickDate");
+    Trick myTrick = Trick.find(trickId);
+    myTrick.updateAll(sportId, categoryId, trickName, trickRating, trickDate);
+    model.put("ratings", Rating.all());
+    model.put("categories", Category.all());
+    model.put("tricks", Trick.all());
+    model.put("sports", Sport.all());
+    model.put("template", "templates/trick.vtl");
+    return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }

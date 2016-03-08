@@ -279,6 +279,10 @@ ALTER TABLE ONLY users_tricks ALTER COLUMN id SET DEFAULT nextval('users_tricks_
 --
 
 COPY categories (id, name) FROM stdin;
+1	Flatground
+2	Flip Tricks
+3	Air
+4	Grind
 \.
 
 
@@ -286,7 +290,7 @@ COPY categories (id, name) FROM stdin;
 -- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('categories_id_seq', 1, false);
+SELECT pg_catalog.setval('categories_id_seq', 4, true);
 
 
 --
@@ -294,6 +298,8 @@ SELECT pg_catalog.setval('categories_id_seq', 1, false);
 --
 
 COPY ratings (id, name) FROM stdin;
+2	CLEAN
+3	SLOPPY
 \.
 
 
@@ -301,7 +307,7 @@ COPY ratings (id, name) FROM stdin;
 -- Name: ratings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('ratings_id_seq', 1, false);
+SELECT pg_catalog.setval('ratings_id_seq', 3, true);
 
 
 --
@@ -309,6 +315,10 @@ SELECT pg_catalog.setval('ratings_id_seq', 1, false);
 --
 
 COPY sports (id, name) FROM stdin;
+1	Skateboarding
+2	Snowboarding
+3	BMX
+4	Skiing
 \.
 
 
@@ -316,7 +326,7 @@ COPY sports (id, name) FROM stdin;
 -- Name: sports_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('sports_id_seq', 1, false);
+SELECT pg_catalog.setval('sports_id_seq', 4, true);
 
 
 --
@@ -324,7 +334,8 @@ SELECT pg_catalog.setval('sports_id_seq', 1, false);
 --
 
 COPY tricks (id, name, date, category_id, sport_id, rating_id) FROM stdin;
-1	kickflip	2016-05-08	1	1	1
+26	360		1	1	2
+32	720		1	1	2
 \.
 
 
@@ -332,7 +343,7 @@ COPY tricks (id, name, date, category_id, sport_id, rating_id) FROM stdin;
 -- Name: tricks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('tricks_id_seq', 1, true);
+SELECT pg_catalog.setval('tricks_id_seq', 34, true);
 
 
 --
