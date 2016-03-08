@@ -5,9 +5,16 @@ import java.util.Arrays;
 public class User {
   private String name;
   private int id;
+  private boolean mDuplicate;
 
   public User (String name) {
     this.name = name;
+    mDuplicate = false;
+    for (User user : User.all()) {
+      if (this.name.equals(user.getName())) {
+        mDuplicate = true;
+      }
+    }
   }
 
   public String getName() {
@@ -16,6 +23,10 @@ public class User {
 
   public int getId() {
     return id;
+  }
+
+  public boolean isDuplicate() {
+    return mDuplicate;
   }
 
   @Override
@@ -53,6 +64,16 @@ public class User {
       String sql = "SELECT * FROM users where id=:id";
       User user = con.createQuery(sql)
         .addParameter("id", id)
+        .executeAndFetchFirst(User.class);
+      return user;
+    }
+  }
+
+  public static User findByUserName(String name) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM users where name=:username";
+      User user = con.createQuery(sql)
+        .addParameter("username", name)
         .executeAndFetchFirst(User.class);
       return user;
     }
