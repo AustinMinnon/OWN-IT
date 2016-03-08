@@ -1,12 +1,12 @@
-# Band Manager App
+# "OWN IT"
 
-#### An app for any bands tour information.
+#### Trick tracking application for extreme sports.
 
-#### By Austin Minnon
+#### Contributors: Austin Minnon, Josh Gustafson, Kyle Derrick, Michael Schennum
 
 ## Description
 
-This is an application for tracking a bands past, and upcoming shows. You will also have the ability to view a venues upcoming shows.  
+This is an application for recording tricks. Each user has their own trick lists, that one can personalize. The more a user records, the more progress they are able to track.   
 
 ## Setup/Installation Requirements
 
@@ -22,15 +22,16 @@ Open terminal and run Postgres:
 $ postgres
 ```
 
-Open a new tab in terminal and create the `band_venues` database:
+Open a new tab in terminal and run this:
 ```
 $ psql
-create database band_venues;
-\c band_venues
-create table venues (id serial PRIMARY KEY, name varchar, description varchar);
-create table bands (id serial PRIMARY KEY, name varchar, description varchar);
-create table bands_venues (id serial PRIMARY KEY, band_id int, venue_id int);
-create database band_venues_test with template band_venues;
+create database own_it;
+\c own_it
+create table categories (id serial PRIMARY KEY, name varchar);
+create table sports (id serial PRIMARY KEY, name varchar);
+create table tricks (id serial PRIMARY KEY, name varchar, rating int, date varchar, category_id int, user_id int, sport_id int);
+create table users (id serial PRIMARY KEY, name varchar);
+create database own_it_test with template own_it;
 
 ```
 
@@ -55,4 +56,4 @@ no known bugs.
 
 Licensed under the GPL.
 
-Copyright (c) 2016 **Austin Minnon**
+Copyright (c) 2016 **Austin Minnon, Josh Gustafson, Kyle Derrick, Michael Schennum**
