@@ -1,25 +1,27 @@
-<form action="/update/trick/$trick.getId()" method="post">
-  <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
-  <select id='sport_id' name='sport_id' type='text' value="$trick.getSportId()" required>
-    #foreach($sport in $sports)
-  <option value="$sport.getId()">$sport.getName()</option>
-    #end
-    <button type="submit" class="btn btn-warning">Edit Sport</button>
-  </select>
-  <select id='category_id' name='category_id' type='text' required>
-    #foreach($category in $categories)
-  <option value="$category.getId()">$category.getName()</option>
-    #end
-    <button type="submit" class="btn btn-warning">Edit Category</button>
-  </select>
-  <label for="trickName"> Trick Name </label>
-  <input id="trickName" name="trickName" type="text" value="$trick.getName()">
-  <select id='trickRating' name='trickRating' type='text' required>
-    #foreach ($rating in $ratings)
-      <option value="$rating.getId()">$rating.getName()</option>
-    #end
-  </select>
-  <label>Trick Date</label>
-  <input id="trickDate" name="trickDate" type="date" placeholder="yyyy-MM-dd" value="$trick.getDate()">
-  <button type="submit" class="btn btn-success">Add Trick</button>
-</form>
+<div class = "container">
+  <div class = "cover">
+    <form action="/update/trick/$trick.getId()" method="post" class="flex-form">
+      <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+      <select id='sport_id' name='sport_id' type='text' value="$trick.getSportId()" required>
+        #foreach($sport in $sports)
+      <option value="$sport.getId()">$sport.getName()</option>
+        #end
+        <button type="submit" class="btn btn-warning">Edit Sport</button>
+      </select>
+      <select id='category_id' name='category_id' type='text' required>
+        #foreach($category in $categories)
+      <option value="$category.getId()">$category.getName()</option>
+        #end
+        <button type="submit" class="btn btn-warning">Edit Category</button>
+      </select>
+      <input id="trickName" name="trickName" type="text" value="$trick.getName()">
+      <select id='trickRating' name='trickRating' type='text' required>
+        #foreach ($rating in $ratings)
+          <option value="$rating.getId()">$rating.getName()</option>
+        #end
+      </select>
+      <input id="trickDate" name="trickDate" type="date" value="$trick.getDate()">
+      <button type="submit" id="trickbutton" class="btn btn-danger"> Update Trick</button>
+    </form>
+  </div>
+</div>
