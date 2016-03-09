@@ -42,11 +42,11 @@ public class TrickTest {
   public void update_updatesALLIntoDatabase_true() {
     Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1);
     myTrick.save();
-    myTrick.updateAll("Ollie", 2, "2016-06-08", 2, 1);
+    myTrick.updateAll(2, 2, "Ollie", 1, "2016-06-08");
     assertEquals(myTrick.getName(), "Ollie");
     assertEquals(myTrick.getDate(), "2016-06-08");
-    assertEquals(myTrick.getRatingId(), 2);
-    assertEquals(myTrick.getCategoryId(), 1);
+    assertEquals(myTrick.getRatingId(), 1);
+    assertEquals(myTrick.getCategoryId(), 2);
   }
 
   @Test

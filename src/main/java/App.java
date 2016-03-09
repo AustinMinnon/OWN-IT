@@ -105,7 +105,8 @@ public class App {
   post("/delete/trick/:id", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
     int id = Integer.parseInt(request.queryParams("trickId"));
-    Trick.delete(id);
+    Trick newTrick = Trick.find(id);
+    newTrick.delete();
     model.put("ratings", Rating.all());
     model.put("categories", Category.all());
     model.put("tricks", Trick.all());

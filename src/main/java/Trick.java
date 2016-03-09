@@ -141,16 +141,16 @@ public class Trick {
     updateCategoryId(sport_id);
   }
 
-  public static Trick find(int id) {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM tricks where id=:id";
-      Trick trick = con.createQuery(sql)
-        .addParameter("id", id)
-        .executeAndFetchFirst(Trick.class);
-      return trick;
-    }
-
-  }
+  // public static Trick find(int id) {
+  //   try(Connection con = DB.sql2o.open()) {
+  //     String sql = "SELECT * FROM tricks where id=:id";
+  //     Trick trick = con.createQuery(sql)
+  //       .addParameter("id", id)
+  //       .executeAndFetchFirst(Trick.class);
+  //     return trick;
+  //   }
+  //
+  // }
 
   //CREATE
   public void save() {
@@ -179,7 +179,7 @@ public class Trick {
   }
 
   //DELETE
-  public static void delete(int id) {
+  public void delete() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "DELETE FROM tricks WHERE id = :id;";
       con.createQuery(sql)
