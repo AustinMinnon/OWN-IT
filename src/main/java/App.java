@@ -27,6 +27,15 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/create-user", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      // String username = request.queryParams("loginUsername");
+      // User user = User.find(request.session().attribute("userId"));
+      // model.put("user", user);
+      model.put("template", "templates/create-user.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     get("/add/trick", (request,response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       List<Category> categories = Category.all();
@@ -97,7 +106,7 @@ public class App {
         return null;
       }
     }
-    response.redirect("/home");
+    response.redirect("/");
     return null;
   });
 
