@@ -2,7 +2,6 @@
   text-align: center;
 }
 
-
 .transparentbox {
   color: white;
   margin-left: auto;
@@ -12,33 +11,46 @@
   background:rgba(0,0,0,0.25);
 }
 
+
+#loginUsername {
+  font-weight: bolder;
+  color: grey;
+  border-radius: 5px;
+}
+
+.link {
+  color: white;
+  font-size: 150%;
+}
+
+.link:hover {
+  color: #337ab7;
+  font-weight: bolder;
+}
+
 .login-label {
   margin-bottom: 0px;
   font-weight: bold;
 }
 
-.container {
- background-image: url("/img/giphy.gif");
- background-repeat: no-repeat;
- border-radius: 20px;
+
+#gif-background {
+/*  making the gif fullscreen  */
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
 }
 
-@media only screen and (max-width: 670px) {
-.container {
- background-image: url("/img/giphy.gif");
- background-repeat: no-repeat;
- background-size: contain;
- background-position: center;
-  }
-}
-
-body {
-  background-image: url("/img/skulls.png");
-}
-
-.row {
+.howToUse {
   color: white;
-  margin-top: 30%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-left: 0px;
   background:rgba(0,0,0,0.25);
-  border-radius: 20px;
 }
