@@ -22,6 +22,8 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       String username = request.queryParams("loginUsername");
       User user = User.find(request.session().attribute("userId"));
+      List<Trick> userTricks = Trick.getUserTricks(user.getId());
+      model.put("userTricks", userTricks);
       model.put("sports", Sport.all());
       model.put("user", user);
       model.put("template", "templates/home.vtl");
@@ -41,23 +43,42 @@ public class App {
       User user = User.find(request.session().attribute("userId"));
       model.put("categories", Category.all());
       model.put("user", user);
-      model.put("template", "templates/home.vtl");
+      model.put("template", "templates/skateboarding.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    // // filter categories
+    // post("/skateboarding", (request, response) -> {
+    //   HashMap<String, Object> model = new HashMap<String, Object>();
+    //   List<Trick> foundTricks = Trick.all();
+    //   String[] selectedCategories = request.queryParamsValues("checkCategory");
+    //   if (selectedCategories != null) {
+    //     foundTricks = Trick.getUserTricks(selectedCategories);
+    //     // String filterType = request.queryParams("filterType");
+    //     // if (filterType.equals("sharedTasks")) {
+    //     // } else {
+    //     //   foundTasks = Task.getCombinedTasks(selectedCategories);
+    //     // }
+    //   }
+    //   model.put("filteredTricks", foundTricks);
+    //   model.put("allCategories", Category.all());
+    //   model.put("template", "templates/filter.vtl");
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
+
 
     get("/add/trick", (request,response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       User user = User.find(request.session().attribute("userId"));
-
+      List<Trick> userTricks = Trick.getUserTricks(user.getId());
       List<Category> categories = Category.all();
-      List<Trick> tricks = Trick.all();
       List<Sport> sports = Sport.all();
       List<Rating> ratings = Rating.all();
       model.put("user", user);
       model.put("ratings", ratings);
       model.put("categories", categories);
-      model.put("tricks", tricks);
       model.put("sports", sports);
+      model.put("userTricks", userTricks);
       model.put("template", "templates/trick.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
