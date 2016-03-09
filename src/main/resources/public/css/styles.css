@@ -2,7 +2,6 @@
   text-align: center;
 }
 
-
 .transparentbox {
   color: white;
   margin-left: auto;
@@ -17,14 +16,14 @@
   font-weight: bold;
 }
 
-.container {
+.mainvideo {
  background-image: url("/img/giphy.gif");
  background-repeat: no-repeat;
  border-radius: 20px;
 }
 
 @media only screen and (max-width: 670px) {
-.container {
+.mainvideo {
  background-image: url("/img/giphy.gif");
  background-repeat: no-repeat;
  background-size: contain;
@@ -33,7 +32,10 @@
 }
 
 body {
+  font-family: Montserrat;
   background-image: url("/img/skulls.png");
+  font-size: 18px;
+  color: #333d47;
 }
 
 .row {
@@ -41,4 +43,46 @@ body {
   margin-top: 30%;
   background:rgba(0,0,0,0.25);
   border-radius: 20px;
+}
+
+.flex-form > * {
+  color: #565a5c;
+  border: 0;
+  padding: 7px;
+  line-height: 19px;
+  font-size: 16px;
+  border-radius: 0;
+  outline: 0;
+  border-right: 1px solid rgba(0,0,0,0.2);
+  -/*webkit-appearance: none;*/
+}
+
+.flex-form > *: last-child {
+  border-right: 0;
+}
+
+/*Flexbox Starts Here*/
+
+.cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-form{
+  display: flex;
+  border: 15px solid rgba(0,0,0,0.3);
+  border-radius: 5px;
+}
+
+input[type="search"] {
+  flex-basis:360px;
+}
+
+#trickbutton{
+  color: white;
+}
+
+.smalltext:p {
+  font-size: 15px;
 }
