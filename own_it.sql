@@ -10,14 +10,14 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -30,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: categories; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
+-- Name: categories; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE categories (
@@ -63,7 +63,7 @@ ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 
 --
--- Name: ratings; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
+-- Name: ratings; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE ratings (
@@ -96,7 +96,7 @@ ALTER SEQUENCE ratings_id_seq OWNED BY ratings.id;
 
 
 --
--- Name: sports; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
+-- Name: sports; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE sports (
@@ -129,7 +129,7 @@ ALTER SEQUENCE sports_id_seq OWNED BY sports.id;
 
 
 --
--- Name: tricks; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
+-- Name: tricks; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE tricks (
@@ -138,7 +138,8 @@ CREATE TABLE tricks (
     date character varying,
     category_id integer,
     sport_id integer,
-    rating_id integer
+    rating_id integer,
+    user_id integer
 );
 
 
@@ -166,7 +167,7 @@ ALTER SEQUENCE tricks_id_seq OWNED BY tricks.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
+-- Name: users; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE users (
@@ -199,7 +200,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: users_tricks; Type: TABLE; Schema: public; Owner: Guest; Tablespace:
+-- Name: users_tricks; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
 CREATE TABLE users_tricks (
@@ -333,9 +334,10 @@ SELECT pg_catalog.setval('sports_id_seq', 4, true);
 -- Data for Name: tricks; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY tricks (id, name, date, category_id, sport_id, rating_id) FROM stdin;
-26	360		1	1	2
-32	720		1	1	2
+COPY tricks (id, name, date, category_id, sport_id, rating_id, user_id) FROM stdin;
+65	720		2	1	2	3
+57	Helflip5235252	2016-03-02	1	1	2	4
+66	108018		1	1	2	3
 \.
 
 
@@ -343,8 +345,7 @@ COPY tricks (id, name, date, category_id, sport_id, rating_id) FROM stdin;
 -- Name: tricks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('tricks_id_seq', 34, true);
-
+SELECT pg_catalog.setval('tricks_id_seq', 67, true);
 
 
 --
@@ -353,6 +354,13 @@ SELECT pg_catalog.setval('tricks_id_seq', 34, true);
 
 COPY users (id, name) FROM stdin;
 1	joe
+2	mike
+3	Kyle
+4	Austin
+5	Jamal
+6	Jibberish
+7	austin
+8	scrub
 \.
 
 
@@ -360,7 +368,7 @@ COPY users (id, name) FROM stdin;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('users_id_seq', 1, true);
+SELECT pg_catalog.setval('users_id_seq', 8, true);
 
 
 --
@@ -379,7 +387,7 @@ SELECT pg_catalog.setval('users_tricks_id_seq', 1, false);
 
 
 --
--- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY categories
@@ -387,7 +395,7 @@ ALTER TABLE ONLY categories
 
 
 --
--- Name: ratings_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
+-- Name: ratings_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY ratings
@@ -395,7 +403,7 @@ ALTER TABLE ONLY ratings
 
 
 --
--- Name: sports_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
+-- Name: sports_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY sports
@@ -403,7 +411,7 @@ ALTER TABLE ONLY sports
 
 
 --
--- Name: tricks_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
+-- Name: tricks_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY tricks
@@ -411,7 +419,7 @@ ALTER TABLE ONLY tricks
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY users
@@ -419,7 +427,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: users_tricks_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace:
+-- Name: users_tricks_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
 ALTER TABLE ONLY users_tricks
@@ -439,3 +447,4 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
+
