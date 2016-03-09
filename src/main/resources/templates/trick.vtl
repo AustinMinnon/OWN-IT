@@ -27,6 +27,11 @@ trick.vtl
 </div>
 	<h3>List of tricks $user.getName() has owned:</h3>
 	<hr>
+	#if ($duplicatetrickrequested)
+	  <p>That trick is already listed. Please enter a different trick</p>
+	#elseif (!($duplicatetrickrequested))
+	  <p>Trick Saved</p>
+	#end
 	<ul>
 	#foreach($trick in $tricks)
 	  <li>$trick.getName()</li>

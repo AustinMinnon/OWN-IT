@@ -42,6 +42,7 @@ public class App {
     }, new VelocityTemplateEngine());
 
     post("/add/trick", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
       int categoryId = Integer.parseInt(request.queryParams("category_id"));
       int sportId = Integer.parseInt(request.queryParams("sport_id"));
       int trickRating = Integer.parseInt(request.queryParams("trickRating"));
@@ -49,11 +50,16 @@ public class App {
       String trickDate = request.queryParams("trickDate");
       Category category = Category.find(1);
       Trick trick = new Trick (trickName, trickRating, trickDate, categoryId, sportId);
-
+      boolean duplicateTrickRequested = trick.isDuplicate();
+      if(!(duplicateTrickRequested)) {
       trick.save();
-      response.redirect("/add/trick");
-      return null;
-    });
+      model.put("template", "templates/trick.vtl");
+      } else {
+      model.put("duplicatetrickrequested", duplicateTrickRequested);
+      model.put("template", "templates/trick.vtl");
+    }
+    return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
     // get(":user_id/bmx/", (request, response) -> {
     //   HashMap<String, Object> model = new HashMap<String, Object>();
