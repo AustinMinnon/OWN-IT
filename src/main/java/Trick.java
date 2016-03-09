@@ -40,6 +40,24 @@ public class Trick {
     return sport_id;
   }
 
+  public static List<Trick> getUserTricks(int id) {
+    String sql = "SELECT * FROM tricks WHERE user_id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetch(Trick.class);
+    }
+  }
+
+  public static List<Trick> getUserSkateTricks(int id, int sport_id) {
+    String sql = "SELECT * FROM tricks WHERE user_id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .addParameter("id", id)
+      .addParameter("sport_id", sport_id)
+      .executeAndFetch(Trick.class);
+    }
+  }
   public Trick(String name, int rating_id, String date, int category_id, int sport_id, int user_id) {
     this.name = name;
     this.rating_id = rating_id;
@@ -76,15 +94,6 @@ public class Trick {
     }
   }
 
-  public static List<Trick> getUserTricks(int id) {
-    String sql = "SELECT * FROM tricks WHERE user_id = :id";
-    try(Connection con = DB.sql2o.open()) {
-      return con.createQuery(sql)
-      .addParameter("id", id)
-      .executeAndFetch(Trick.class);
-
-    }
-  }
 
   public void updateName(String name) {
     this.name = name;

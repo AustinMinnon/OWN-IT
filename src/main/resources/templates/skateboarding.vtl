@@ -1,5 +1,16 @@
-skate.vtl
-$user.getName()
+skateboarding.vtl
+
+<h1>Hello $user.getName() </h1>
+
+<h3>Here is a list of all your owned skateboarding tricks:</h3>
+#foreach ($trick in $skateBoardingTricks)
+	<li>$trick.getName()</li>
+#end
+
+<a href="/">Logout</a>
+<a href="/add/trick">Add Trick</a>
+
+
 
 <!-- <h3> Filter Trick by Category </h3>
 <div class="row">

@@ -73,10 +73,20 @@ public class TrickTest {
     myTrick2.save();
     Trick myTrick3 = new Trick("Heelflip", 1, "2016-05-08", 1, 1, 3);
     myTrick3.save();
-    List<Trick> tricks = Trick.all();
     List<Trick> userTricks = Trick.getUserTricks(3);
     assertEquals(userTricks.size(), 3);
+  }
 
+  @Test
+  public void getUserSkateTricks_ReturnsAllSkateTricksForAUser() {
+    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 3);
+    myTrick.save();
+    Trick myTrick2 = new Trick("Heelflip", 1, "2016-05-08", 1, 1, 3);
+    myTrick2.save();
+    Trick myTrick3 = new Trick("Heelflip", 1, "2016-05-08", 1, 2, 3);
+    myTrick3.save();
+    List<Trick> userSkateTricks = Trick.getUserSkateTricks();
+    assertEquals(userSkateTricks.size(), 2);
   }
 
 }
