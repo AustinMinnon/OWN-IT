@@ -4,8 +4,10 @@ home.vtl
   #foreach ($sport in $sports)
   <li>$sport.getName()</li>
   #end
-<a href="/skateboarding">$user.getName()'s Skateboard Tricks<a>
+<a href="/skateboarding">$user.getName()'s Skateboard Tricks</a>
 
-
+#foreach($trick in $userTricks)
+<li> $trick.getName()  $trick.getRatingId()  $trick.getDate() <li>
+#end
 <a href="/">Logout</a>
 <a href="/add/trick">Add Trick</a>

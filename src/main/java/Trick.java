@@ -76,12 +76,15 @@ public class Trick {
     }
   }
 
-  // public static List<Trick> userTricks() {
-  //   String sql = "SELECT * FROM tricks JOIN users ON (users.id = tricks.user_id) WHERE tricks_user.id=:id";
-  //   try(Connection con = DB.sql2o.open()) {
-  //     return con.createQuery(sql).executeAndFetch(Trick.class);
-  //   }
-  // }
+  public static List<Trick> getUserTricks(int id) {
+    String sql = "SELECT * FROM tricks WHERE user_id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetch(Trick.class);
+
+    }
+  }
 
   public void updateName(String name) {
     this.name = name;
