@@ -192,7 +192,7 @@ public class Trick {
     updateRatingId(rating_id);
     updateDate(date);
     updateCategoryId(category_id);
-    updateCategoryId(sport_id);
+    updateSportId(sport_id);
   }
 
   // public static Trick find(int id) {
