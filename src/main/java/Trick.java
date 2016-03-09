@@ -50,7 +50,7 @@ public class Trick {
   }
 
   public static List<Trick> getUserSkateTricks(int id, int sport_id) {
-    String sql = "SELECT * FROM tricks WHERE user_id = :id";
+    String sql = "SELECT * FROM tricks JOIN sports ON (tricks.sport_id = :sport_id) JOIN users WHERE user_id = :id";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
       .addParameter("id", id)
