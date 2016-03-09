@@ -58,6 +58,16 @@ public class User {
     }
   }
 
+  public List<Trick> getTricks(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT tricks.id, tricks.name FROM tricks JOIN users_tricks ON (tricks.id = users_tricks.trick_id) JOIN users ON(users_tricks.user_id = users.id) WHERE users.id = :user_id;";
+      List<Trick> tricks = con.createQuery(sql)
+        .addParameter("user_id", this.getId())
+        .executeAndFetch(Trick.class);
+        return tricks;
+    }
+  }
+
   //READ
   public static User find(int id) {
     try(Connection con = DB.sql2o.open()) {

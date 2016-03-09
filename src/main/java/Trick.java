@@ -11,6 +11,7 @@ public class Trick {
   private String date;
   private int category_id;
   private int sport_id;
+  private boolean mDuplicate;
 
   public int getId() {
     return id;
@@ -36,8 +37,18 @@ public class Trick {
     return sport_id;
   }
 
+  public boolean isDuplicate() {
+    return mDuplicate;
+  }
+
   public Trick(String name, int rating_id, String date, int category_id, int sport_id) {
     this.name = name;
+    mDuplicate = false;
+    for (Trick trick : Trick.all()) {
+      if (this.name.equals(trick.getName())) {
+        mDuplicate = true;
+      }
+    }
     this.rating_id = rating_id;
     this.date = date;
     this.category_id = category_id;
@@ -47,7 +58,6 @@ public class Trick {
   public void firstToUppercase() {
     this.name = WordUtils.capitalize(this.name.toLowerCase());
   }
-
 
   @Override
   public boolean equals(Object otherTrick){
@@ -133,7 +143,7 @@ public class Trick {
     }
   }
 
-  public void updateAll(String name, int rating_id, String date, int category_id, int sport_id){
+  public void updateAll(int sport_id, int category_id, String name, int rating_id, String date){
     updateName(name);
     updateRatingId(rating_id);
     updateDate(date);
@@ -141,16 +151,7 @@ public class Trick {
     updateCategoryId(sport_id);
   }
 
-  public static Trick find(int id) {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM tricks where id=:id";
-      Trick trick = con.createQuery(sql)
-        .addParameter("id", id)
-        .executeAndFetchFirst(Trick.class);
-      return trick;
-    }
-  }
-
+  //CREATE
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO tricks(name, rating_id, date, category_id, sport_id) VALUES (:name, :rating_id, :date, :category_id, :sport_id)";
@@ -165,21 +166,29 @@ public class Trick {
     }
   }
 
-  public void delete() {
+  //READ
+  public static Trick find(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String deleteQuery = "DELETE FROM tricks WHERE id = :id;";
-      con.createQuery(deleteQuery)
-      .addParameter("id", id)
-      .executeUpdate();
+      String sql = "SELECT * FROM tricks where id=:id";
+      Trick trick = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Trick.class);
+      return trick;
     }
   }
 
-  public void addCategory(Category category ) {
-      try(Connection con = DB.sql2o.open()) {
-        String sql = "INSERT INTO tricks (category_id) VALUES (:category_id)";
-        con.createQuery(sql)
-        .addParameter("category_id", this.getCategoryId())
-        .executeUpdate();
-      }
+  //DELETE
+  public static void delete(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM tricks WHERE id = :id;";
+      con.createQuery(sql)
+      .addParameter("id", id)
+      .executeUpdate();
+      // String deleteQuery = "DELETE FROM users_tricks WHERE trick_id = :id;";
+      // con.createQuery(deleteQuery)
+      // .addParameter("id", id)
+      // .executeUpdate();
     }
+  }
+
 }
