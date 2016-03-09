@@ -16,14 +16,14 @@ public class TrickTest {
 
   @Test
   public void equals_returnsTrueIfTricksAretheSame() {
-    Trick firstTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1);
-    Trick secondTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1);
+    Trick firstTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 3);
+    Trick secondTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 3);
     assertTrue(firstTrick.equals(secondTrick));
   }
 
   @Test
   public void save_savesIntoDatabase_true() {
-    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1);
+    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 3);
     myTrick.save();
     Trick savedTrick = Trick.all().get(0);
     assertTrue(savedTrick.equals(myTrick));
@@ -32,7 +32,7 @@ public class TrickTest {
 
   @Test
   public void updateName_updatesNameIntoDatabase_true() {
-    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1);
+    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 3);
     myTrick.save();
     myTrick.updateName("Ollie");
     assertEquals(myTrick.getName(), "Ollie");
@@ -40,7 +40,7 @@ public class TrickTest {
 
   @Test
   public void update_updatesALLIntoDatabase_true() {
-    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1);
+    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 3);
     myTrick.save();
     myTrick.updateAll(2, 2, "Ollie", 1, "2016-06-08");
     assertEquals(myTrick.getName(), "Ollie");
@@ -51,7 +51,7 @@ public class TrickTest {
 
   @Test
   public void find_findTrickInDatabase_true() {
-    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1);
+    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 3);
     myTrick.save();
     Trick savedTrick = Trick.all().get(0);
     assertTrue(myTrick.equals(savedTrick));
@@ -59,7 +59,7 @@ public class TrickTest {
 
   @Test
   public void delete_deletesTrickFromDatabase() {
-    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1);
+    Trick myTrick = new Trick("Kickflip", 1, "2016-05-08", 1, 1, 3);
     myTrick.save();
     myTrick.delete();
     assertEquals(Trick.all().size(), 0);

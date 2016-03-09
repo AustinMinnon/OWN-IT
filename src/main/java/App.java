@@ -22,6 +22,7 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       String username = request.queryParams("loginUsername");
       User user = User.find(request.session().attribute("userId"));
+      model.put("sports", Sport.all());
       model.put("user", user);
       model.put("template", "templates/home.vtl");
       return new ModelAndView(model, layout);
@@ -29,19 +30,30 @@ public class App {
 
     get("/create-user", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      // String username = request.queryParams("loginUsername");
-      // User user = User.find(request.session().attribute("userId"));
-      // model.put("user", user);
+      String username = request.queryParams("loginUsername");
       model.put("template", "templates/create-user.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/skateboarding", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      // String username = request.queryParams("loginUsername");
+      User user = User.find(request.session().attribute("userId"));
+      model.put("categories", Category.all());
+      model.put("user", user);
+      model.put("template", "templates/home.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
     get("/add/trick", (request,response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.session().attribute("userId"));
+
       List<Category> categories = Category.all();
       List<Trick> tricks = Trick.all();
       List<Sport> sports = Sport.all();
       List<Rating> ratings = Rating.all();
+      model.put("user", user);
       model.put("ratings", ratings);
       model.put("categories", categories);
       model.put("tricks", tricks);
@@ -51,13 +63,15 @@ public class App {
     }, new VelocityTemplateEngine());
 
     post("/add/trick", (request, response) -> {
+      User user = User.find(request.session().attribute("userId"));
+
       int categoryId = Integer.parseInt(request.queryParams("category_id"));
       int sportId = Integer.parseInt(request.queryParams("sport_id"));
       int trickRating = Integer.parseInt(request.queryParams("trickRating"));
       String trickName = request.queryParams("trickName");
       String trickDate = request.queryParams("trickDate");
       Category category = Category.find(1);
-      Trick trick = new Trick (trickName, trickRating, trickDate, categoryId, sportId);
+      Trick trick = new Trick (trickName, trickRating, trickDate, categoryId, sportId, user.getId());
 
       trick.save();
       response.redirect("/add/trick");
@@ -113,9 +127,11 @@ public class App {
   //DELETE TRICK
   post("/delete/trick/:id", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
+    User user = User.find(request.session().attribute("userId"));
     int id = Integer.parseInt(request.queryParams("trickId"));
     Trick newTrick = Trick.find(id);
     newTrick.delete();
+    model.put("user", user);
     model.put("ratings", Rating.all());
     model.put("categories", Category.all());
     model.put("tricks", Trick.all());
@@ -140,8 +156,10 @@ public class App {
 
   get("update/trick/:id", (request,response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
+    User user = User.find(request.session().attribute("userId"));
     int id = Integer.parseInt(request.queryParams("trickId"));
     Trick currentTrick = Trick.find(id);
+    model.put("user", user);
     model.put("trick", currentTrick);
     model.put("ratings", Rating.all());
     model.put("categories", Category.all());
@@ -152,6 +170,7 @@ public class App {
 
   post("/update/trick/:id", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
+    User user = User.find(request.session().attribute("userId"));
     int trickId = Integer.parseInt(request.queryParams("trickId"));
     int categoryId = Integer.parseInt(request.queryParams("category_id"));
     int sportId = Integer.parseInt(request.queryParams("sport_id"));
@@ -160,6 +179,7 @@ public class App {
     String trickDate = request.queryParams("trickDate");
     Trick myTrick = Trick.find(trickId);
     myTrick.updateAll(sportId, categoryId, trickName, trickRating, trickDate);
+    model.put("user", user);
     model.put("ratings", Rating.all());
     model.put("categories", Category.all());
     model.put("tricks", Trick.all());

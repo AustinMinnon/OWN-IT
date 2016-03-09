@@ -15,6 +15,7 @@ trick.vtl
 		</select>
 		<label for="trickName"> Trick Name </label>
   	<input id="trickName" name="trickName" type="text">
+		<!-- <input id="userId" name="userId" type="hidden" value="$user.getId()"> -->
 		<select id='trickRating' name='trickRating' type='text' required>
 			#foreach ($rating in $ratings)
 				<option value="$rating.getId()">$rating.getName()</option>
@@ -40,4 +41,7 @@ trick.vtl
 	  </form></li>
 	#end
 	</ul>
+
+
+	$user.getId()
 <p><a href="/home">Home</a></p>

@@ -1,1 +1,11 @@
 home.vtl
+
+<h1>Hello $user.getName()</h1>
+  #foreach ($sport in $sports)
+  <li>$sport.getName()</li>
+  #end
+<a href="/skateboarding">$user.getName()'s Skateboard Tricks<a>
+
+
+<a href="/">Logout</a>
+<a href="/add/trick">Add Trick</a>

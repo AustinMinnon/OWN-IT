@@ -11,9 +11,13 @@ public class Trick {
   private String date;
   private int category_id;
   private int sport_id;
+  private int user_id;
 
   public int getId() {
     return id;
+  }
+  public int getUserId() {
+    return user_id;
   }
 
   public String getName() {
@@ -36,12 +40,13 @@ public class Trick {
     return sport_id;
   }
 
-  public Trick(String name, int rating_id, String date, int category_id, int sport_id) {
+  public Trick(String name, int rating_id, String date, int category_id, int sport_id, int user_id) {
     this.name = name;
     this.rating_id = rating_id;
     this.date = date;
     this.category_id = category_id;
     this.sport_id = sport_id;
+    this.user_id = user_id;
   }
 
   public void firstToUppercase() {
@@ -59,7 +64,8 @@ public class Trick {
             this.getCategoryId() == newTrick.getCategoryId() &&
             this.getDate().equals(newTrick.getDate()) &&
             this.getRatingId() == newTrick.getRatingId() &&
-            this.getSportId() == newTrick.getSportId();
+            this.getSportId() == newTrick.getSportId() &&
+            this.getUserId() == newTrick.getUserId();
     }
   }
 
@@ -155,13 +161,14 @@ public class Trick {
   //CREATE
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO tricks(name, rating_id, date, category_id, sport_id) VALUES (:name, :rating_id, :date, :category_id, :sport_id)";
+      String sql = "INSERT INTO tricks(name, rating_id, date, category_id, sport_id, user_id) VALUES (:name, :rating_id, :date, :category_id, :sport_id, :user_id)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", name)
         .addParameter("rating_id", rating_id)
         .addParameter("date", date)
         .addParameter("category_id", category_id)
         .addParameter("sport_id", sport_id)
+        .addParameter("user_id", user_id)
         .executeUpdate()
         .getKey();
     }
