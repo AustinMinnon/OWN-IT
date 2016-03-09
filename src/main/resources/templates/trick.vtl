@@ -1,6 +1,6 @@
 <div class = "container">
-		<h3>Own It! - Add a trick now, to start recording your progress.</h3>
-		<div class = "cover">
+	<h3>Own It! - Add a trick now, to start recording your progress.</h3>
+	<div class = "cover">
 		<form action="/add/trick" method="post" class="flex-form">
 			<select id='sport_id' name='sport_id' type='text' required>
 				#foreach($sport in $sports)
@@ -22,7 +22,7 @@
 			<button type="submit" id="trickbutton" class="btn btn-danger">Add Trick</button>
 		</form>
 	</div>
-		<div class="jumbotron" style="background:transparent !important">
+	<div class="jumbotron" style="background:transparent !important">
 		<h4>List of tricks $user.getName() has owned:</h4>
 			<hr>
 			<ul>
@@ -45,7 +45,7 @@
   	<input id="trickDate" name="trickDate" type="date" placeholder="yyyy-MM-dd">
 		<button type="submit" class="btn btn-success">Add Trick</button>
 	</form>
-</div>
+	</div>
 	<h3>List of tricks $user.getName() has owned:</h3>
 	<hr>
 	<ul>
@@ -61,7 +61,7 @@
 	  </form></li>
 	#end
 	</ul>
-
-
-	$user.getId()
-<p><a href="/home">Home</a></p>
+	<div class="smalltext">
+		<p><a href="/home">Home</a></p>
+	</div>
+</div>
