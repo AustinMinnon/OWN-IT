@@ -49,15 +49,51 @@ public class Trick {
     }
   }
 
-  public static List<Trick> getUserSkateTricks(int id, int sport_id) {
-    String sql = "SELECT * FROM tricks JOIN sports ON (tricks.sport_id = :sport_id) JOIN users WHERE user_id = :id";
+  public static List<Trick> getUserSkateTricks(int id) {
+    String sql = "SELECT * FROM tricks WHERE sport_id = 1 AND user_id = :id";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
       .addParameter("id", id)
-      .addParameter("sport_id", sport_id)
       .executeAndFetch(Trick.class);
     }
   }
+
+  public static List<Trick> getUserSkateFlat(int id) {
+    String sql = "SELECT * FROM tricks WHERE sport_id = 1 AND user_id = :id AND category_id = 1";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetch(Trick.class);
+    }
+  }
+
+  public static List<Trick> getUserSkateFlip(int id) {
+    String sql = "SELECT * FROM tricks WHERE sport_id = 1 AND user_id = :id AND category_id = 2";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetch(Trick.class);
+    }
+  }
+
+  public static List<Trick> getUserSkateAir(int id) {
+    String sql = "SELECT * FROM tricks WHERE sport_id = 1 AND user_id = :id AND category_id = 3";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetch(Trick.class);
+    }
+  }
+
+  public static List<Trick> getUserSkateGrind(int id) {
+    String sql = "SELECT * FROM tricks WHERE sport_id = 1 AND user_id = :id AND category_id = 4";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetch(Trick.class);
+    }
+  }
+
   public Trick(String name, int rating_id, String date, int category_id, int sport_id, int user_id) {
     this.name = name;
     this.rating_id = rating_id;

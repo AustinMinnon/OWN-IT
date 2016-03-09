@@ -85,7 +85,7 @@ public class TrickTest {
     myTrick2.save();
     Trick myTrick3 = new Trick("Heelflip", 1, "2016-05-08", 1, 2, 3);
     myTrick3.save();
-    List<Trick> userSkateTricks = Trick.getUserSkateTricks();
+    List<Trick> userSkateTricks = Trick.getUserSkateTricks(3);
     assertEquals(userSkateTricks.size(), 2);
   }
 
