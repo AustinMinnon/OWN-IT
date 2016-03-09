@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+
+.transparentbox {
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+  border-radius: 20px;
+  background:rgba(0,0,0,0.25);
+}
+
 .login-label {
   margin-bottom: 0px;
   font-weight: bold;
@@ -10,6 +20,7 @@
 .container {
  background-image: url("/img/giphy.gif");
  background-repeat: no-repeat;
+ border-radius: 20px;
 }
 
 @media only screen and (max-width: 670px) {
@@ -26,5 +37,8 @@ body {
 }
 
 .row {
-  margin-top: 50%;
+  color: white;
+  margin-top: 30%;
+  background:rgba(0,0,0,0.25);
+  border-radius: 20px;
 }
