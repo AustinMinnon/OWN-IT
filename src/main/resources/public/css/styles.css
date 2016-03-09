@@ -1,3 +1,10 @@
+body {
+  color: #333d47;
+  font-size: 18px;
+  font-family: Montserrat;
+  background-color: #edefed;
+}
+
 .center {
   text-align: center;
 }
