@@ -56,6 +56,63 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/snowboarding", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.session().attribute("userId"));
+      List<Trick> userSnowTricks = Trick.getUserSnowTricks(user.getId());
+      List<Trick> userSnowTricksFlat = Trick.getUserSnowFlat(user.getId());
+      List<Trick> userSnowTricksFlip = Trick.getUserSnowFlip(user.getId());
+      List<Trick> userSnowTricksAir = Trick.getUserSnowAir(user.getId());
+      List<Trick> userSnowTricksGrind = Trick.getUserSnowGrind(user.getId());
+      model.put("userSnowTricksFlat", userSnowTricksFlat);
+      model.put("userSnowTricksFlip", userSnowTricksFlip);
+      model.put("userSnowTricksAir", userSnowTricksAir);
+      model.put("userSnowTricksGrind", userSnowTricksGrind);
+      model.put("userSnowTricks", userSnowTricks);
+      model.put("categories", Category.all());
+      model.put("user", user);
+      model.put("template", "templates/snowboarding.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/bmx", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.session().attribute("userId"));
+      List<Trick> userBmxTricks = Trick.getUserBmxTricks(user.getId());
+      List<Trick> userBmxTricksFlat = Trick.getUserBmxFlat(user.getId());
+      List<Trick> userBmxTricksFlip = Trick.getUserBmxFlip(user.getId());
+      List<Trick> userBmxTricksAir = Trick.getUserBmxAir(user.getId());
+      List<Trick> userBmxTricksGrind = Trick.getUserBmxGrind(user.getId());
+      model.put("userBmxTricksFlat", userBmxTricksFlat);
+      model.put("userBmxTricksFlip", userBmxTricksFlip);
+      model.put("userBmxTricksAir", userBmxTricksAir);
+      model.put("userBmxTricksGrind", userBmxTricksGrind);
+      model.put("userBmxTricks", userBmxTricks);
+      model.put("categories", Category.all());
+      model.put("user", user);
+      model.put("template", "templates/bmx.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/skiing", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.session().attribute("userId"));
+      List<Trick> userSkiTricks = Trick.getUserSkiTricks(user.getId());
+      List<Trick> userSkiTricksFlat = Trick.getUserSkiFlat(user.getId());
+      List<Trick> userSkiTricksFlip = Trick.getUserSkiFlip(user.getId());
+      List<Trick> userSkiTricksAir = Trick.getUserSkiAir(user.getId());
+      List<Trick> userSkiTricksGrind = Trick.getUserSkiGrind(user.getId());
+      model.put("userSkiTricksFlat", userSkiTricksFlat);
+      model.put("userSkiTricksFlip", userSkiTricksFlip);
+      model.put("userSkiTricksAir", userSkiTricksAir);
+      model.put("userSkiTricksGrind", userSkiTricksGrind);
+      model.put("userSkiTricks", userSkiTricks);
+      model.put("categories", Category.all());
+      model.put("user", user);
+      model.put("template", "templates/skiing.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     get("/add/trick", (request,response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       User user = User.find(request.session().attribute("userId"));
