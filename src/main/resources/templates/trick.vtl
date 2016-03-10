@@ -27,15 +27,52 @@
 		<h4>List of tricks $user.getName() has owned:</h4>
 			<hr>
 	<div>
-	#foreach($trick in $userTricks)
-	  <p>$trick.getName()</p> <p>$trick.getSportName()</p> <p>$trick.getCategoryName()</p> <p>$trick.getRatingName()</p> <p>$trick.getDate()</p>
+		<a href="/skateboarding">$user.getName()'s Skateboard Tricks:</a>
+		#foreach($skateTrick in $userSkateTricks)
+			<li>$skateTrick.getName()</p> <p>$skateTrick.getCategoryName()</p> <p>$skateTrick.getRatingName()</p> <p>$skateTrick.getDate()</li>
+		<form action="/update/trick/$skateTrick.getId()" method="get">
+	    <input id="trickId" name="trickId" type="hidden" value="$skateTrick.getId()">
+	    <button type="submit" id="$skateTrick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
+	  </form>
+	  <form action="/delete/trick/$skateTrick.getId()" method="post">
+	    <input id="trickId" name="trickId" type="hidden" value="$skateTrick.getId()">
+	    <button type="submit" id="$skateTrick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+	  </form></li>
+		#end
+		<a href="/snowboarding">$user.getName()'s Snowboard Tricks:</a>
+		#foreach($snowTrick in $userSnowTricks)
+			<li>$snowTrick.getName()</p> <p>$snowTrick.getCategoryName()</p> <p>$snowTrick.getRatingName()</p> <p>$snowTrick.getDate()</li>
+		<form action="/update/trick/$snowTrick.getId()" method="get">
+	    <input id="trickId" name="trickId" type="hidden" value="$snowTrick.getId()">
+	    <button type="submit" id="$snowTrick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
+	  </form>
+	  <form action="/delete/trick/$snowTrick.getId()" method="post">
+	    <input id="trickId" name="trickId" type="hidden" value="$snowTrick.getId()">
+	    <button type="submit" id="$snowTrick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+	  </form></li>
+		#end
+		<a href="/bmx">$user.getName()'s BMX Tricks:</a>
+		#foreach($bmxTrick in $userBmxTricks)
+			<li>$bmxTrick.getName()</p> <p>$bmxTrick.getCategoryName()</p> <p>$bmxTrick.getRatingName()</p> <p>$bmxTrick.getDate()</li>
 		<form action="/update/trick/$trick.getId()" method="get">
-	    <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
-	    <button type="submit" id="$trick.getId()" class="btn btn-warning">Update</button>
+	    <input id="trickId" name="trickId" type="hidden" value="$bmxTrick.getId()">
+	    <button type="submit" id="$bmxTrick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
 	  </form>
 	  <form action="/delete/trick/$trick.getId()" method="post">
-	    <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
-	    <button type="submit" id="$trick.getId()" class="btn btn-danger">Delete Trick</button>
+	    <input id="trickId" name="trickId" type="hidden" value="$bmxTrick.getId()">
+	    <button type="submit" id="$bmxTrick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+	  </form></li>
+		#end
+		<a href="/skiing">$user.getName()'s Skiing Tricks:</a>
+		#foreach($skiTrick in $userSkiTricks)
+			<li>$skiTrick.getName()</p> <p>$skiTrick.getCategoryName()</p> <p>$skiTrick.getRatingName()</p> <p>$skiTrick.getDate()</li>
+		<form action="/update/trick/$skiTrick.getId()" method="get">
+	    <input id="trickId" name="trickId" type="hidden" value="$skiTrick.getId()">
+	    <button type="submit" id="$skiTrick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
+	  </form>
+	  <form action="/delete/trick/$skiTrick.getId()" method="post">
+	    <input id="trickId" name="trickId" type="hidden" value="$skiTrick.getId()">
+	    <button type="submit" id="$skiTrick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
 	  </form></li>
 	#end
 </div>
