@@ -99,6 +99,6 @@ input[type="search"] {
   color: white;
 }
 
-.smalltext:p {
-  font-size: 15px;
+.smalltext {
+  font-size: 14px;
 }
