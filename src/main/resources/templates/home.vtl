@@ -1,16 +1,19 @@
 home.vtl
+<div class = "main">
+  <div class = "container">
+	<h1>Hello $user.getName()</h1>
+	  #foreach ($sport in $sports)
+	  <li>$sport.getName()</li>
+	  #end
+	<a href="/skateboarding">$user.getName()'s Skateboard Tricks</a>
+	<a href="/snowboarding">$user.getName()'s Snowboard Tricks</a>
+	<a href="/bmx">$user.getName()'s BMX Tricks</a>
+	<a href="/skiing">$user.getName()'s Skiing Tricks</a>
 
-<h1>Hello $user.getName()</h1>
-  #foreach ($sport in $sports)
-  <li>$sport.getName()</li>
-  #end
-<a href="/skateboarding">$user.getName()'s Skateboard Tricks</a>
-<a href="/snowboarding">$user.getName()'s Snowboard Tricks</a>
-<a href="/bmx">$user.getName()'s BMX Tricks</a>
-<a href="/skiing">$user.getName()'s Skiing Tricks</a>
-
-#foreach($trick in $userTricks)
-<li> $trick.getName()  $trick.getRatingId()  $trick.getDate() <li>
-#end
-<a href="/">Logout</a>
-<a href="/add/trick">Add Trick</a>
+	#foreach($trick in $userTricks)
+	<li> $trick.getName()  $trick.getRatingId()  $trick.getDate() <li>
+	#end
+	<a href="/">Logout</a>
+	<a href="/add/trick">Add Trick</a>
+  </div>
+</div>
