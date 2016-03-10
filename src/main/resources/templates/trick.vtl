@@ -1,5 +1,5 @@
 <div class = "main">
-<div class = "container">
+	<div class = "container">
 		<h3>Own It! - Add a trick now, to start recording your progress.</h3>
 		<div class = "cover">
 		<form action="/add/trick" method="post" class="flex-form">
@@ -25,7 +25,7 @@
 	</div>
 		<div class="jumbotron" style="background:transparent !important">
 		<h4>List of tricks $user.getName() has owned:</h4>
-			<hr>
+		<hr>
 	<ul>
 	#foreach($trick in $userTricks)
 	  <p>$trick.getName()</p>
@@ -33,19 +33,16 @@
 		<p>$trick.getDate()</p>
 		<form action="/update/trick/$trick.getId()" method="get">
 	    <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
-	    <button type="submit" id="$trick.getId()" class="btn btn-warning">Update</button>
+	    <button type="submit" id="$trick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
 	  </form>
 	  <form action="/delete/trick/$trick.getId()" method="post">
 	    <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
-	    <button type="submit" id="$trick.getId()" class="btn btn-danger">Delete Trick</button>
+	    <button type="submit" id="$trick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
 	  </form></li>
 	#end
 	</ul>
-
-
-	$user.getId()
 	<hr>
-<div class="smalltext">
-	<a href="/home">Home</a>
-</div>
+	<div class="smalltext">
+		<a href="/home">Home</a>
+	</div>
 </div>
