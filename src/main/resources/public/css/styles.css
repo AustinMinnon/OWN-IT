@@ -5,20 +5,44 @@
   font-family: Montserrat;
 }
 
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+}
+
 .btn-custom {
   color: white;
   border: 1px darkgrey;
-  background:rgba(0,0,0,0.25);
+  background:rgba(0,0,0,0.40);
 }
 .btn-custom:hover {
   cursor: auto;
   color: white;
   border: 1px darkgrey;
-  background:rgba(0,0,0,0.25);
+  background:rgba(0,0,0,0.40);
+}
+
+.transparentBackground {
+  background:rgba(0,0,0,0.5);
+}
+
+.active {
+  opacity: .3;
 }
 
 .bottomMargin {
   margin-bottom: 5px;
+}
+
+.topMargin {
+  margin-top: 60px;
 }
 
 .center {
@@ -31,7 +55,7 @@
   margin-right: auto;
   width: 280px;
   border-radius: 20px;
-  background:rgba(0,0,0,0.25);
+  background:rgba(0,0,0,0.40);
 }
 
 .transparentwhitebox {
@@ -40,7 +64,7 @@
   margin-right: auto;
   width: 280px;
   border-radius: 20px;
-  background:rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.40);
 }
 
 #loginUsername {
@@ -97,7 +121,7 @@
   bottom: 0;
   width: 100%;
   margin-left: 0px;
-  background:rgba(0,0,0,0.25);
+  background:rgba(0,0,0,0.40);
 }
 
 .howToUseWhite {
@@ -106,7 +130,7 @@
   bottom: 0;
   width: 100%;
   margin-left: 0px;
-  background:rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.40);
 }
 
 .flex-container {

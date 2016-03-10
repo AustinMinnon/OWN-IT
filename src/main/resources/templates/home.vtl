@@ -1,12 +1,28 @@
 <div class = "main">
-  <a href="/skateboarding">Skateboard Tricks</a>
-	<a href="/snowboarding">Snowboard Tricks</a>
-	<a href="/bmx">BMX Tricks</a>
-	<a href="/skiing">Skiing Tricks</a>
-  <a href="/add/trick">Add Trick</a>
-  <a href="/">Logout</a>
+  <div class="navbar navbar-inverse navbar-fixed-top transparentBackground">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse center">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/home">Home</a></li>
+          <li><a href="/skateboarding">Skateboard</a></li>
+          <li><a href="/snowboarding">Snowboard</a></li>
+          <li><a href="/bmx">BMX</a></li>
+          <li><a href="/skiing">Ski</a></li>
+          <li><a href="/add/trick">Add Trick</a></li>
+          <li><a href="/">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class = "container center">
-    <div class="transparentbox">
+    <div class="transparentbox topMargin">
   <h1>Hello $user.getName()</h1>
   <h3>Here are all of your tricks</h3>
     </div>
@@ -21,3 +37,4 @@
 	#end
   </div>
 </div>
+<img id="gif-background" src="/img/giphy.gif" alt="snowboard-flip" />
