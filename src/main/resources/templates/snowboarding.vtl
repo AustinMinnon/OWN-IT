@@ -1,1 +1,58 @@
 snow.vtl
+
+<h1>Hello $user.getName() </h1>
+
+<h3>Here is a list of all your owned Snowboarding tricks:</h3>
+Category: Flat
+	#foreach ($trick in $userSnowTricksFlat)
+		<li>$trick.getName()</li>
+		<form action="/update/trick/$trick.getId()" method="get">
+			<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+			<button type="submit" id="$trick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
+		</form>
+		<form action="/snowboarding/delete/trick/$trick.getId()" method="post">
+			<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+			<button type="submit" id="$trick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+		</form></li>
+	#end
+Category: Flip Tricks
+	#foreach ($trick in $userSnowTricksFlip)
+		<li>$trick.getName()</li>
+		<form action="/update/trick/$trick.getId()" method="get">
+			<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+			<button type="submit" id="$trick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
+		</form>
+		<form action="/snowboarding/delete/trick/$trick.getId()" method="post">
+			<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+			<button type="submit" id="$trick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+		</form></li>
+	#end
+Category: Air Tricks
+	#foreach ($trick in $userSnowTricksAir)
+		<li>$trick.getName()</li>
+		<form action="/update/trick/$trick.getId()" method="get">
+			<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+			<button type="submit" id="$trick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
+		</form>
+		<form action="/snowboarding/delete/trick/$trick.getId()" method="post">
+			<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+			<button type="submit" id="$trick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+		</form></li>
+	#end
+Category: Grind Tricks
+	#foreach ($trick in $userSnowTricksGrind)
+		<li>$trick.getName()</li>
+		<form action="/update/trick/$trick.getId()" method="get">
+			<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+			<button type="submit" id="$trick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
+		</form>
+		<form action="/snowboarding/delete/trick/$trick.getId()" method="post">
+			<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+			<button type="submit" id="$trick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+		</form></li>
+	#end
+
+
+
+<a href="/">Logout</a>
+<a href="/add/trick">Add Trick</a>
