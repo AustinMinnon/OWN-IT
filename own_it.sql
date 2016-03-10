@@ -335,9 +335,6 @@ SELECT pg_catalog.setval('sports_id_seq', 4, true);
 --
 
 COPY tricks (id, name, date, category_id, sport_id, rating_id, user_id) FROM stdin;
-65	720		2	1	2	3
-57	Helflip5235252	2016-03-02	1	1	2	4
-66	108018		1	1	2	3
 \.
 
 
@@ -345,7 +342,7 @@ COPY tricks (id, name, date, category_id, sport_id, rating_id, user_id) FROM std
 -- Name: tricks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('tricks_id_seq', 67, true);
+SELECT pg_catalog.setval('tricks_id_seq', 107, true);
 
 
 --
@@ -353,14 +350,6 @@ SELECT pg_catalog.setval('tricks_id_seq', 67, true);
 --
 
 COPY users (id, name) FROM stdin;
-1	joe
-2	mike
-3	Kyle
-4	Austin
-5	Jamal
-6	Jibberish
-7	austin
-8	scrub
 \.
 
 
@@ -368,7 +357,7 @@ COPY users (id, name) FROM stdin;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('users_id_seq', 8, true);
+SELECT pg_catalog.setval('users_id_seq', 18, true);
 
 
 --
