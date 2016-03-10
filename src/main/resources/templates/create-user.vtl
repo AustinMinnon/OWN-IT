@@ -1,20 +1,19 @@
-create-user.vtl
 <div class="center">
-  <div class="transparentbox">
+  <div class="transparentwhitebox">
     <h2>Add New User</h2>
     <p class="login-label">Enter A Name</p>
     <form action='/' method='post'>
       <input id="username" name="username" type="text" autofocus="true">
-      <button type='submit' class='btn btn-primary'>Add Me</button>
+      <button type='submit' class='btn btn-primary btntextcolor'>Add Me</button>
     </form>
     #if ($duplicateuserrequested)
       <p>That name is already in use. Please try a different name</p>
     #elseif (!($duplicateuserrequested))
     #end
-    <a class="link" href="/">Back to Login Page</a>
+    <a class="linkBlack" href="/">Back to Login Page</a>
   </div>
 </div>
-<div class="row howToUse">
+<div class="row howToUseWhite">
   <h2 class="center">How to use Own It!</h2>
   <div class="col-sm-4">
     <p>

@@ -26,9 +26,10 @@
 		<div class="jumbotron" style="background:transparent !important">
 		<h4>List of tricks $user.getName() has owned:</h4>
 			<hr>
-	<ul>
+	<div>
 	#foreach($trick in $userTricks)
-	  <li>$trick.getName() $trick.getName() $trick.getDate()</li>
+
+	  <p>$trick.getName()</p> <p>$trick.getSportName()</p> <p>$trick.getCategoryName()</p> <p>$trick.getRatingName()</p> <p>$trick.getDate()</p>
 		<form action="/update/trick/$trick.getId()" method="get">
 	    <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
 	    <button type="submit" id="$trick.getId()" class="btn btn-warning">Update</button>
@@ -38,9 +39,9 @@
 	    <button type="submit" id="$trick.getId()" class="btn btn-danger">Delete Trick</button>
 	  </form></li>
 	#end
-	</ul>
+	</div>
 	<hr>
-<div class="smalltext">
-	<a href="/home">Home</a>
-</div>
-</div>
+	<div class="smalltext">
+		<a href="/home">Home</a>
+	</div>
+	</div>

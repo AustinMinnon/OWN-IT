@@ -6,7 +6,6 @@ import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
 
-
 public class App {
   public static void main(String [] args){
     staticFileLocation("/public");
@@ -161,21 +160,21 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-  post("/home", (request, response) -> {
-    HashMap<String, Object> model = new HashMap<String, Object>();
-    String username = request.queryParams("loginUsername");
-    User user = User.findByUserName(username);
-    if (user != null) {
-      if (user.getName().equals(username)) {
-        request.session().attribute("userId", null);
-        request.session().attribute("userId", user.getId());
-        response.redirect("/home");
-        return null;
+    post("/home", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String username = request.queryParams("loginUsername");
+      User user = User.findByUserName(username);
+      if (user != null) {
+        if (user.getName().equals(username)) {
+          request.session().attribute("userId", null);
+          request.session().attribute("userId", user.getId());
+          response.redirect("/home");
+          return null;
+        }
       }
-    }
-    response.redirect("/");
-    return null;
-  });
+      response.redirect("/");
+      return null;
+    });
 
   post("/delete/trick/:id", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
@@ -207,6 +206,54 @@ public class App {
       model.put("sports", Sport.all());
       model.put("template", "templates/trick.vtl");
       response.redirect("/skateboarding");
+      return null;
+    });
+
+    post("snowboarding/delete/trick/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.session().attribute("userId"));
+      int id = Integer.parseInt(request.queryParams("trickId"));
+      Trick newTrick = Trick.find(id);
+      newTrick.delete();
+      model.put("user", user);
+      model.put("ratings", Rating.all());
+      model.put("categories", Category.all());
+      model.put("tricks", Trick.all());
+      model.put("sports", Sport.all());
+      model.put("template", "templates/trick.vtl");
+      response.redirect("/snowboarding");
+      return null;
+    });
+
+    post("bmx/delete/trick/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.session().attribute("userId"));
+      int id = Integer.parseInt(request.queryParams("trickId"));
+      Trick newTrick = Trick.find(id);
+      newTrick.delete();
+      model.put("user", user);
+      model.put("ratings", Rating.all());
+      model.put("categories", Category.all());
+      model.put("tricks", Trick.all());
+      model.put("sports", Sport.all());
+      model.put("template", "templates/trick.vtl");
+      response.redirect("/bmx");
+      return null;
+    });
+
+    post("skiing/delete/trick/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.session().attribute("userId"));
+      int id = Integer.parseInt(request.queryParams("trickId"));
+      Trick newTrick = Trick.find(id);
+      newTrick.delete();
+      model.put("user", user);
+      model.put("ratings", Rating.all());
+      model.put("categories", Category.all());
+      model.put("tricks", Trick.all());
+      model.put("sports", Sport.all());
+      model.put("template", "templates/trick.vtl");
+      response.redirect("/skiing");
       return null;
     });
 

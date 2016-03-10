@@ -1,3 +1,4 @@
+/*.MAIN USED ON ALL SUB PAGES*/
 .main {
   color: #333d47;
   font-size: 18px;
@@ -17,7 +18,22 @@
   background:rgba(0,0,0,0.25);
 }
 
+.transparentwhitebox {
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+  border-radius: 20px;
+  background:rgba(255,255,255,0.25);
+}
+
 #loginUsername {
+  font-weight: bolder;
+  color: grey;
+  border-radius: 5px;
+}
+
+#username {
   font-weight: bolder;
   color: grey;
   border-radius: 5px;
@@ -26,6 +42,14 @@
 .link {
   color: white;
   font-size: 150%;
+}
+.linkBlack {
+  color: black;
+  font-size: 150%;
+}
+
+.btntextcolor {
+  color: black;
 }
 
 .link:hover {
@@ -58,6 +82,15 @@
   width: 100%;
   margin-left: 0px;
   background:rgba(0,0,0,0.25);
+}
+
+.howToUseWhite {
+  color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-left: 0px;
+  background:rgba(255,255,255,0.25);
 }
 
 .flex-form > * {
@@ -98,6 +131,6 @@ input[type="search"] {
   color: white;
 }
 
-.smalltext:p {
-  font-size: 15px;
+.smalltext {
+  font-size: 14px;
 }
