@@ -299,6 +299,13 @@ public class Trick {
     }
   }
 
+  public static Trick ratingName() {
+    String sql = "SELECT name FROM ratings WHERE id=rating_id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .executeAndFetch(Trick.class);
+    }
+  }
 
   public void updateName(String name) {
     this.name = name;
