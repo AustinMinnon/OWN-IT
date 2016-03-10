@@ -23,9 +23,27 @@ public class AppTest extends FluentTest {
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
-  // @Test
-  // public void rootTest() {
-  //   goTo("http://localhost:4567/");
-  //   assertThat(pageSource()).contains("Welcome to the official Tour and Venue Directory");
-  // }
+  @Test
+  public void rootTest() {
+    goTo("http://localhost:4567/");
+    assertThat(pageSource()).contains("Own It!");
+  }
+
+  @Test
+  public void UserIsCreatedTest() {
+    goTo("http://localhost:4567/create-user");
+    fill("#username").with("Jimbob");
+    submit(".btn");
+    assertThat(pageSource()).contains("Enter Your Username");
+  }
+
+  @Test
+  public void userIsRegistered() {
+    goTo("http://localhost:4567/create-user");
+    fill("#username").with("JoeBob");
+    submit(".btn");
+    fill("#loginUsername").with("JoeBob");
+    submit(".btn");
+    assertThat(pageSource()).contains("JoeBob");
+  }
 }
