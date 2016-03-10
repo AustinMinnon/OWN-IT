@@ -1,3 +1,9 @@
+.main {
+  color: #333d47;
+  font-size: 18px;
+  font-family: Montserrat;
+}
+
 .center {
   text-align: center;
 }
@@ -33,7 +39,6 @@
   font-weight: bold;
 }
 
-
 #gif-background {
 /*  making the gif fullscreen  */
   position: fixed;
@@ -58,7 +63,7 @@
 .flex-form > * {
   color: #565a5c;
   border: 0;
-  padding: 7px;
+  padding: 8px;
   line-height: 19px;
   font-size: 16px;
   border-radius: 0;
@@ -82,11 +87,11 @@
 .flex-form{
   display: flex;
   border: 15px solid rgba(0,0,0,0.3);
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 input[type="search"] {
-  flex-basis:360px;
+  flex-basis:370px;
 }
 
 #trickbutton{
