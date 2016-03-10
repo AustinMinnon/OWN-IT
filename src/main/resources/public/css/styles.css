@@ -5,6 +5,22 @@
   font-family: Montserrat;
 }
 
+.btn-custom {
+  color: white;
+  border: 1px darkgrey;
+  background:rgba(0,0,0,0.25);
+}
+.btn-custom:hover {
+  cursor: auto;
+  color: white;
+  border: 1px darkgrey;
+  background:rgba(0,0,0,0.25);
+}
+
+.bottomMargin {
+  margin-bottom: 5px;
+}
+
 .center {
   text-align: center;
 }
@@ -91,6 +107,10 @@
   width: 100%;
   margin-left: 0px;
   background:rgba(255,255,255,0.25);
+}
+
+.flex-container {
+  display: flex;
 }
 
 .flex-form > * {
