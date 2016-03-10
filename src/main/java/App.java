@@ -101,6 +101,7 @@ public class App {
       model.put("duplicateuserrequested", duplicateUserRequested);
       model.put("template", "templates/create-user.vtl");
       }
+      model.put("newUser", newUser);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

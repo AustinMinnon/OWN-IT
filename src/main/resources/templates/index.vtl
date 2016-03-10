@@ -4,7 +4,7 @@ index.html
     <h2>Own It!</h2>
     <p class="login-label">Enter Your Username</p>
     <form action='/home' method='post'>
-      <input id="loginUsername" name="loginUsername" type="text" autofocus="true">
+      <input id="loginUsername" name="loginUsername" type="text" autofocus="true" value="$newUser.getName()">
       <button type='submit'class='btn btn-primary'>Login</button>
     </form>
     <a class="link" href="/create-user">Create a user account</a>
