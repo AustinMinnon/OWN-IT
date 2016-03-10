@@ -180,33 +180,35 @@ public class App {
   post("/delete/trick/:id", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
     User user = User.find(request.session().attribute("userId"));
+    List<Trick> userTricks = Trick.getUserTricks(user.getId());
     int id = Integer.parseInt(request.queryParams("trickId"));
     Trick newTrick = Trick.find(id);
     newTrick.delete();
     model.put("user", user);
+    model.put("userTricks", userTricks);
     model.put("ratings", Rating.all());
     model.put("categories", Category.all());
-    model.put("tricks", Trick.all());
     model.put("sports", Sport.all());
     model.put("template", "templates/trick.vtl");
-    return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
-    post("skateboarding/delete/trick/:id", (request, response) -> {
-      HashMap<String, Object> model = new HashMap<String, Object>();
-      User user = User.find(request.session().attribute("userId"));
-      int id = Integer.parseInt(request.queryParams("trickId"));
-      Trick newTrick = Trick.find(id);
-      newTrick.delete();
-      model.put("user", user);
-      model.put("ratings", Rating.all());
-      model.put("categories", Category.all());
-      model.put("tricks", Trick.all());
-      model.put("sports", Sport.all());
-      model.put("template", "templates/trick.vtl");
-      response.redirect("/skateboarding");
-      return null;
+    response.redirect("/add/trick");
+    return null;
     });
+
+    // post("skateboarding/delete/trick/:id", (request, response) -> {
+    //   HashMap<String, Object> model = new HashMap<String, Object>();
+    //   User user = User.find(request.session().attribute("userId"));
+    //   int id = Integer.parseInt(request.queryParams("trickId"));
+    //   Trick newTrick = Trick.find(id);
+    //   newTrick.delete();
+    //   model.put("user", user);
+    //   model.put("ratings", Rating.all());
+    //   model.put("categories", Category.all());
+    //   model.put("tricks", Trick.all());
+    //   model.put("sports", Sport.all());
+    //   model.put("template", "templates/trick.vtl");
+    //   response.redirect("/skateboarding");
+    //   return null;
+    // });
 
   get("update/trick/:id", (request,response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
@@ -225,7 +227,7 @@ public class App {
   post("/update/trick/:id", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
     User user = User.find(request.session().attribute("userId"));
-     List<Trick> userTricks = Trick.getUserTricks(user.getId());
+    List<Trick> userTricks = Trick.getUserTricks(user.getId());
     int trickId = Integer.parseInt(request.queryParams("trickId"));
     int categoryId = Integer.parseInt(request.queryParams("category_id"));
     int sportId = Integer.parseInt(request.queryParams("sport_id"));
@@ -239,7 +241,7 @@ public class App {
     model.put("categories", Category.all());
     model.put("userTricks", userTricks);
     model.put("sports", Sport.all());
-    response.redirect("/skateboarding");
+    response.redirect("/add/trick");
     return null;
     });
 
