@@ -28,7 +28,9 @@
 			<hr>
 	<ul>
 	#foreach($trick in $userTricks)
-	  <li>$trick.getName()</li>
+	  <p>$trick.getName()</p>
+		<p>$trick.getRatingId()</p>
+		<p>$trick.getDate()</p>
 		<form action="/update/trick/$trick.getId()" method="get">
 	    <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
 	    <button type="submit" id="$trick.getId()" class="btn btn-warning">Update</button>
