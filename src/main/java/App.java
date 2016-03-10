@@ -115,7 +115,10 @@ public class App {
     get("/add/trick", (request,response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       User user = User.find(request.session().attribute("userId"));
-      List<Trick> userTricks = Trick.getUserTricks(user.getId());
+      List<Trick> userSkateTricks = Trick.getUserSkateTricks(user.getId());
+      List<Trick> userSnowTricks = Trick.getUserSnowTricks(user.getId());
+      List<Trick> userBmxTricks = Trick.getUserBmxTricks(user.getId());
+      List<Trick> userSkiTricks = Trick.getUserSkiTricks(user.getId());
       List<Category> categories = Category.all();
       List<Sport> sports = Sport.all();
       List<Rating> ratings = Rating.all();
@@ -123,7 +126,10 @@ public class App {
       model.put("ratings", ratings);
       model.put("categories", categories);
       model.put("sports", sports);
-      model.put("userTricks", userTricks);
+      model.put("userSkateTricks", userSkateTricks);
+      model.put("userSnowTricks", userSnowTricks);
+      model.put("userBmxTricks", userBmxTricks);
+      model.put("userSkiTricks", userSkiTricks);
       model.put("template", "templates/trick.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -274,7 +280,10 @@ public class App {
   post("/update/trick/:id", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
     User user = User.find(request.session().attribute("userId"));
-    List<Trick> userTricks = Trick.getUserTricks(user.getId());
+    List<Trick> userSkateTricks = Trick.getUserSkateTricks(user.getId());
+    List<Trick> userSnowTricks = Trick.getUserSnowTricks(user.getId());
+    List<Trick> userBmxTricks = Trick.getUserBmxTricks(user.getId());
+    List<Trick> userSkiTricks = Trick.getUserSkiTricks(user.getId());
     int trickId = Integer.parseInt(request.queryParams("trickId"));
     int categoryId = Integer.parseInt(request.queryParams("category_id"));
     int sportId = Integer.parseInt(request.queryParams("sport_id"));
@@ -286,7 +295,10 @@ public class App {
     model.put("user", user);
     model.put("ratings", Rating.all());
     model.put("categories", Category.all());
-    model.put("userTricks", userTricks);
+    model.put("userSkateTricks", userSkateTricks);
+    model.put("userSnowTricks", userSnowTricks);
+    model.put("userBmxTricks", userBmxTricks);
+    model.put("userSkiTricks", userSkiTricks);
     model.put("sports", Sport.all());
     response.redirect("/add/trick");
     return null;
