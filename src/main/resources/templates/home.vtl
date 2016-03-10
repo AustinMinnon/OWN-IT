@@ -1,18 +1,23 @@
 <div class = "main">
-  <div class = "container">
-	<h1>Hello $user.getName()</h1>
-	  #foreach ($sport in $sports)
-	  <li>$sport.getName()</li>
-	  #end
-	<a href="/skateboarding">$user.getName()'s Skateboard Tricks</a>
-	<a href="/snowboarding">$user.getName()'s Snowboard Tricks</a>
-	<a href="/bmx">$user.getName()'s BMX Tricks</a>
-	<a href="/skiing">$user.getName()'s Skiing Tricks</a>
-
+  <a href="/skateboarding">Skateboard Tricks</a>
+	<a href="/snowboarding">Snowboard Tricks</a>
+	<a href="/bmx">BMX Tricks</a>
+	<a href="/skiing">Skiing Tricks</a>
+  <a href="/add/trick">Add Trick</a>
+  <a href="/">Logout</a>
+  <div class = "container center">
+    <div class="transparentbox">
+  <h1>Hello $user.getName()</h1>
+  <h3>Here are all of your tricks</h3>
+    </div>
 	#foreach($trick in $userTricks)
-	<li> $trick.getName()  $trick.getRatingId()  $trick.getDate() <li>
+    <div class="btn-group bottomMargin">
+    	<p class="btn btn-custom">Sport: $trick.getSportName() </p>
+      <p class="btn btn-custom">Category: $trick.getCategoryName() </p>
+      <p class="btn btn-custom">Name: $trick.getName() </p>
+      <p class="btn btn-custom">Rating: $trick.getRatingName() </p>
+      <p class="btn btn-custom">Date: $trick.getDate()</p>
+    </div>
 	#end
-	<a href="/">Logout</a>
-	<a href="/add/trick">Add Trick</a>
   </div>
 </div>
