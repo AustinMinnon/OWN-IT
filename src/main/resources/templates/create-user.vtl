@@ -1,14 +1,35 @@
 create-user.vtl
-
-<h2>New User</h2>
-<form action='/' method='post'>
-  <label for="username">Enter A Name</label>
-  <input id="username" name="username" type="text">
-  <button type='submit' class='btn btn-success'>Add Me</button>
-</form>
-
-
-#if ($duplicateuserrequested)
-  <p>That name is already in use. Please try a different name</p>
-#elseif (!($duplicateuserrequested))
-#end
+<div class="center">
+  <div class="transparentbox">
+    <h2>Add New User</h2>
+    <p class="login-label">Enter A Name</p>
+    <form action='/' method='post'>
+      <input id="username" name="username" type="text" autofocus="true">
+      <button type='submit' class='btn btn-primary'>Add Me</button>
+    </form>
+    #if ($duplicateuserrequested)
+      <p>That name is already in use. Please try a different name</p>
+    #elseif (!($duplicateuserrequested))
+    #end
+    <a class="link" href="/">Back to Login Page</a>
+  </div>
+</div>
+<div class="row howToUse">
+  <h2 class="center">How to use Own It!</h2>
+  <div class="col-sm-4">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    </p>
+  </div>
+  <div class="col-sm-4">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    </p>
+  </div>
+  <div class="col-sm-4">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    </p>
+  </div>
+</div>
+<img id="gif-background" src="/img/snowgrab.gif" alt="snowboard-flip" />
