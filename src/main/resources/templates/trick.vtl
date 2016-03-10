@@ -28,7 +28,7 @@
 			<hr>
 	<ul>
 	#foreach($trick in $userTricks)
-	  <li>$trick.getName()</li>
+	  <li>$trick.getName() $trick.getName() $trick.getDate()</li>
 		<form action="/update/trick/$trick.getId()" method="get">
 	    <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
 	    <button type="submit" id="$trick.getId()" class="btn btn-warning">Update</button>
@@ -39,9 +39,6 @@
 	  </form></li>
 	#end
 	</ul>
-
-
-	$user.getId()
 	<hr>
 <div class="smalltext">
 	<a href="/home">Home</a>

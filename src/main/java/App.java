@@ -194,21 +194,21 @@ public class App {
     return null;
     });
 
-    // post("skateboarding/delete/trick/:id", (request, response) -> {
-    //   HashMap<String, Object> model = new HashMap<String, Object>();
-    //   User user = User.find(request.session().attribute("userId"));
-    //   int id = Integer.parseInt(request.queryParams("trickId"));
-    //   Trick newTrick = Trick.find(id);
-    //   newTrick.delete();
-    //   model.put("user", user);
-    //   model.put("ratings", Rating.all());
-    //   model.put("categories", Category.all());
-    //   model.put("tricks", Trick.all());
-    //   model.put("sports", Sport.all());
-    //   model.put("template", "templates/trick.vtl");
-    //   response.redirect("/skateboarding");
-    //   return null;
-    // });
+    post("skateboarding/delete/trick/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      User user = User.find(request.session().attribute("userId"));
+      int id = Integer.parseInt(request.queryParams("trickId"));
+      Trick newTrick = Trick.find(id);
+      newTrick.delete();
+      model.put("user", user);
+      model.put("ratings", Rating.all());
+      model.put("categories", Category.all());
+      model.put("tricks", Trick.all());
+      model.put("sports", Sport.all());
+      model.put("template", "templates/trick.vtl");
+      response.redirect("/skateboarding");
+      return null;
+    });
 
   get("update/trick/:id", (request,response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
