@@ -25,6 +25,7 @@
 .link:hover {
   color: #337ab7;
   font-weight: bolder;
+  text-decoration: none;
 }
 
 .login-label {
