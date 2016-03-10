@@ -25,10 +25,10 @@
 	</div>
 		<div class="jumbotron" style="background:transparent !important">
 		<h4>List of tricks $user.getName() has owned:</h4>
-			<hr>
+		<hr>
 	<ul>
 	#foreach($trick in $userTricks)
-	  <li>$trick.getName()</li>
+	  <li>$trick.getName() - $trick.getSportName() - $trick.getCategoryName() - $trick.getRatingName() - $trick.getDate()</li>
 		<form action="/update/trick/$trick.getId()" method="get">
 	    <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
 	    <button type="submit" id="$trick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>

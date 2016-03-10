@@ -40,6 +40,39 @@ public class Trick {
     return sport_id;
   }
 
+  public String getRatingName() {
+    if (rating_id == 1) {
+      return "Clean";
+    } else {
+      return "Sloppy";
+    }
+  }
+
+  public String getSportName() {
+    if (sport_id == 1) {
+      return "Skateboarding";
+    } else if (sport_id == 2) {
+      return "Snowboarding";
+    } else if (sport_id == 3) {
+      return "BMX";
+    } else {
+      return "Skiing";
+    }
+  }
+
+  public String getCategoryName() {
+    if (category_id == 1) {
+      return "Flatground";
+    } else if (category_id == 2) {
+      return "Flip Tricks";
+    } else if (category_id == 3) {
+      return "Air";
+    } else {
+      return "Grind";
+    }
+  }
+
+
   public static List<Trick> getUserTricks(int id) {
     String sql = "SELECT * FROM tricks WHERE user_id = :id";
     try(Connection con = DB.sql2o.open()) {
