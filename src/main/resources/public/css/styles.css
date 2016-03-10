@@ -45,8 +45,16 @@
   margin-top: 60px;
 }
 
+.editDeleteBtns {
+  margin-left: 5px
+}
+
 .center {
   text-align: center;
+}
+
+.thePadding {
+  padding-bottom: 11px;
 }
 
 .transparentbox {
@@ -135,6 +143,7 @@
 
 .flex-container {
   display: flex;
+  flex-direction: column;
 }
 
 .flex-form > * {
