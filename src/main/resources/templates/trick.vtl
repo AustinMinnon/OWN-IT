@@ -1,114 +1,141 @@
 <div class = "main">
-<div class = "container">
-  <h3>Record Tricks</h3>
-  <div class = "cover">
-    <form action="/add/trick" method="post" class="flex-form">
-      <select id='sport_id' name='sport_id' type='text' required>
-        #foreach($sport in $sports)
-        <option value="$sport.getId()">$sport.getName()</option>
-        #end
-      </select>
-      <select id='category_id' name='category_id' type='text' required>
-        #foreach($category in $categories)
-        <option value="$category.getId()">$category.getName()</option>
-        #end
-      </select>
-      <input id="trickName" name="trickName" type="search" placeholder="Trick Name" required>
-      <select id='trickRating' name='trickRating' type='text' required>
-        #foreach ($rating in $ratings)
-        <option value="$rating.getId()">$rating.getName()</option>
-        #end
-      </select>
-      <input id="trickDate" name="trickDate" type="date" required>
-      <button type="submit" id="trickbutton" class="btn btn-danger">Add Trick</button>
-    </form>
+  <div class="navbar navbar-inverse navbar-fixed-top transparentBackground">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse center">
+        <ul class="nav navbar-nav">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/skateboarding">Skateboard</a></li>
+          <li><a href="/snowboarding">Snowboard</a></li>
+          <li><a href="/bmx">BMX</a></li>
+          <li><a href="/skiing">Ski</a></li>
+          <li class="active"><a href="/add/trick">Add Trick</a></li>
+          <li><a href="/">Logout</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="jumbotron" style="background:transparent !important">
+  <div class = "container">
+    <h3 class="topMargin">Record Tricks</h3>
+    <div class = "cover">
+      <form action="/add/trick" method="post" class="flex-form">
+        <select id='sport_id' name='sport_id' type='text' required>
+          #foreach($sport in $sports)
+          <option value="$sport.getId()">$sport.getName()</option>
+          #end
+        </select>
+        <select id='category_id' name='category_id' type='text' required>
+          #foreach($category in $categories)
+          <option value="$category.getId()">$category.getName()</option>
+          #end
+        </select>
+        <input id="trickName" name="trickName" type="search" placeholder="Trick Name" required>
+        <select id='trickRating' name='trickRating' type='text' required>
+          #foreach ($rating in $ratings)
+          <option value="$rating.getId()">$rating.getName()</option>
+          #end
+        </select>
+        <input id="trickDate" name="trickDate" type="date" required>
+        <button type="submit" id="trickbutton" class="btn btn-danger">Add Trick</button>
+      </form>
+    </div>
     <h3>List of tricks $user.getName() has owned:</h3>
     <hr>
     <div>
+
       <h4><strong><em> $user.getName()'s <em>Skateboard</em> Tricks:</strong></em></h4>
       #foreach($skateTrick in $userSkateTricks)
-      <p>$skateTrick.getCategoryName()</p>
-      <p>$skateTrick.getName()</p>
-      <p>$skateTrick.getRatingName()</p>
-      <p>$skateTrick.getDate()</p>
-      <form action="/update/trick/$skateTrick.getId()" method="get">
-        <input id="trickId" name="trickId" type="hidden" value="$skateTrick.getId()">
-        <button type="submit" id="$skateTrick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
-      </form>
-      <form action="/delete/trick/$skateTrick.getId()" method="post">
-        <input id="trickId" name="trickId" type="hidden" value="$skateTrick.getId()">
-        <button type="submit" id="$skateTrick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
-      </form>
+      <div class="flex-container">
+        <div class="btn-group bottomMargin">
+          <form class="btn btn-custom" action="/update/trick/$skateTrick.getId()" method="get">
+            <input id="trickId" name="trickId" type="hidden" value="$skateTrick.getId()">
+            <button type="submit" id="$skateTrick.getId()" class="btn-custom"><i class="fa fa-cog"></i> Update</button>
+          </form>
+          <p class="btn btn-custom thePadding">Category: $skateTrick.getCategoryName()</p>
+          <p class="btn btn-custom thePadding">Name: $skateTrick.getName() </p>
+          <p class="btn btn-custom thePadding">Rating: $skateTrick.getRatingName() </p>
+          <p class="btn btn-custom thePadding">Date: $skateTrick.getDate()</p>
+          <form class="btn btn-custom" action="/delete/trick/$skateTrick.getId()" method="post">
+            <input id="trickId" name="trickId" type="hidden" value="$skateTrick.getId()">
+            <button type="submit" id="$skateTrick.getId()" class="btn-custom"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+          </form>
+        </div>
+      </div>
       #end
     </div>
     <hr>
     <div>
       <h4><strong><em> $user.getName()'s <em>Snowboard</em> Tricks:</strong></em></h4>
       #foreach($snowTrick in $userSnowTricks)
-      <li>
-        $snowTrick.getName()</p>
-        <p>$snowTrick.getCategoryName()</p>
-        <p>$snowTrick.getRatingName()</p>
-        <p>$snowTrick.getDate()
-      </li>
-      <form action="/update/trick/$snowTrick.getId()" method="get">
-        <input id="trickId" name="trickId" type="hidden" value="$snowTrick.getId()">
-        <button type="submit" id="$snowTrick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
-      </form>
-      <form action="/delete/trick/$snowTrick.getId()" method="post">
-        <input id="trickId" name="trickId" type="hidden" value="$snowTrick.getId()">
-        <button type="submit" id="$snowTrick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
-      </form>
-      </li>
+      <div class="flex-container">
+        <div class="btn-group bottomMargin">
+          <form class="btn btn-custom" action="/update/trick/$snowTrick.getId()" method="get">
+            <input id="trickId" name="trickId" type="hidden" value="$snowTrick.getId()">
+            <button type="submit" id="$snowTrick.getId()" class="btn-custom"><i class="fa fa-cog"></i> Update</button>
+          </form>
+          <p class="btn btn-custom thePadding">Category: $snowTrick.getCategoryName()</p>
+          <p class="btn btn-custom thePadding">Name: $snowTrick.getName() </p>
+          <p class="btn btn-custom thePadding">Rating: $snowTrick.getRatingName() </p>
+          <p class="btn btn-custom thePadding">Date: $snowTrick.getDate()</p>
+          <form class="btn btn-custom" action="/delete/trick/$snowTrick.getId()" method="post">
+            <input id="trickId" name="trickId" type="hidden" value="$snowTrick.getId()">
+            <button type="submit" id="$snowTrick.getId()" class="btn-custom"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+          </form>
+        </div>
+      </div>
       #end
     </div>
     <hr>
     <div>
       <h4><strong><em> $user.getName()'s <em>Skiing<em> Tricks:</strong></em></h4>
       #foreach($skiTrick in $userSkiTricks)
-      <li>
-        $skiTrick.getName()</p>
-        <p>$skiTrick.getCategoryName()</p>
-        <p>$skiTrick.getRatingName()</p>
-        <p>$skiTrick.getDate()
-      </li>
-      <form action="/update/trick/$skiTrick.getId()" method="get">
-        <input id="trickId" name="trickId" type="hidden" value="$skiTrick.getId()">
-        <button type="submit" id="$skiTrick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
-      </form>
-      <form action="/delete/trick/$skiTrick.getId()" method="post">
-        <input id="trickId" name="trickId" type="hidden" value="$skiTrick.getId()">
-        <button type="submit" id="$skiTrick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
-      </form>
-      </li>
+      <div class="flex-container">
+        <div class="btn-group bottomMargin">
+          <form class="btn btn-custom" action="/update/trick/$skiTrick.getId()" method="get">
+            <input id="trickId" name="trickId" type="hidden" value="$skiTrick.getId()">
+            <button type="submit" id="$skiTrick.getId()" class="btn-custom"><i class="fa fa-cog"></i> Update</button>
+          </form>
+          <p class="btn btn-custom thePadding">Category: $skiTrick.getCategoryName()</p>
+          <p class="btn btn-custom thePadding">Name: $skiTrick.getName() </p>
+          <p class="btn btn-custom thePadding">Rating: $skiTrick.getRatingName() </p>
+          <p class="btn btn-custom thePadding">Date: $skiTrick.getDate()</p>
+          <form class="btn btn-custom" action="/delete/trick/$skiTrick.getId()" method="post">
+            <input id="trickId" name="trickId" type="hidden" value="$skiTrick.getId()">
+            <button type="submit" id="$skiTrick.getId()" class="btn-custom"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+          </form>
+        </div>
+      </div>
       #end
     </div>
     <hr>
     <div>
       <h4><strong><em> $user.getName()'s <em>BMX</em Tricks:</strong></em></h4>
       #foreach($bmxTrick in $userBmxTricks)
-      <li>
-        $bmxTrick.getName()</p>
-        <p>$bmxTrick.getCategoryName()</p>
-        <p>$bmxTrick.getRatingName()</p>
-        <p>$bmxTrick.getDate()
-      </li>
-      <form action="/update/trick/$trick.getId()" method="get">
-        <input id="trickId" name="trickId" type="hidden" value="$bmxTrick.getId()">
-        <button type="submit" id="$bmxTrick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
-      </form>
-      <form action="/delete/trick/$trick.getId()" method="post">
-        <input id="trickId" name="trickId" type="hidden" value="$bmxTrick.getId()">
-        <button type="submit" id="$bmxTrick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
-      </form>
-      </li>
+      <div class="flex-container">
+        <div class="btn-group bottomMargin">
+          <form class="btn btn-custom" action="/update/trick/$bmxTrick.getId()" method="get">
+            <input id="trickId" name="trickId" type="hidden" value="$bmxTrick.getId()">
+            <button type="submit" id="$bmxTrick.getId()" class="btn-custom"><i class="fa fa-cog"></i> Update</button>
+          </form>
+          <p class="btn btn-custom thePadding">Category: $bmxTrick.getCategoryName()</p>
+          <p class="btn btn-custom thePadding">Name: $bmxTrick.getName() </p>
+          <p class="btn btn-custom thePadding">Rating: $bmxTrick.getRatingName() </p>
+          <p class="btn btn-custom thePadding">Date: $bmxTrick.getDate()</p>
+          <form class="btn btn-custom" action="/delete/trick/$bmxTrick.getId()" method="post">
+            <input id="trickId" name="trickId" type="hidden" value="$bmxTrick.getId()">
+            <button type="submit" id="$bmxTrick.getId()" class="btn-custom"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+          </form>
+        </div>
+      </div>
       #end
     </div>
     <hr>
   </div>
-  <div class="smalltext">
-    <a href="/home">Home</a>
-  </div>
+</div>
 </div>
