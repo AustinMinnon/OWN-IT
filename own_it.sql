@@ -200,40 +200,6 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: users_tricks; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
---
-
-CREATE TABLE users_tricks (
-    id integer NOT NULL,
-    trick_id integer,
-    user_id integer
-);
-
-
-ALTER TABLE users_tricks OWNER TO "Guest";
-
---
--- Name: users_tricks_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
---
-
-CREATE SEQUENCE users_tricks_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE users_tricks_id_seq OWNER TO "Guest";
-
---
--- Name: users_tricks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
---
-
-ALTER SEQUENCE users_tricks_id_seq OWNED BY users_tricks.id;
-
-
---
 -- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
@@ -266,13 +232,6 @@ ALTER TABLE ONLY tricks ALTER COLUMN id SET DEFAULT nextval('tricks_id_seq'::reg
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
---
-
-ALTER TABLE ONLY users_tricks ALTER COLUMN id SET DEFAULT nextval('users_tricks_id_seq'::regclass);
 
 
 --
@@ -335,6 +294,10 @@ SELECT pg_catalog.setval('sports_id_seq', 4, true);
 --
 
 COPY tricks (id, name, date, category_id, sport_id, rating_id, user_id) FROM stdin;
+110	Tail Grab	2016-03-10	3	1	2	19
+112	Tail Press	2016-03-10	1	2	2	19
+113	Melon Grab	2016-03-10	3	2	2	19
+114	5-0	2016-03-10	4	1	2	19
 \.
 
 
@@ -342,7 +305,7 @@ COPY tricks (id, name, date, category_id, sport_id, rating_id, user_id) FROM std
 -- Name: tricks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('tricks_id_seq', 107, true);
+SELECT pg_catalog.setval('tricks_id_seq', 116, true);
 
 
 --
@@ -350,6 +313,7 @@ SELECT pg_catalog.setval('tricks_id_seq', 107, true);
 --
 
 COPY users (id, name) FROM stdin;
+19	Austin
 \.
 
 
@@ -357,22 +321,7 @@ COPY users (id, name) FROM stdin;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('users_id_seq', 18, true);
-
-
---
--- Data for Name: users_tricks; Type: TABLE DATA; Schema: public; Owner: Guest
---
-
-COPY users_tricks (id, trick_id, user_id) FROM stdin;
-\.
-
-
---
--- Name: users_tricks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
---
-
-SELECT pg_catalog.setval('users_tricks_id_seq', 1, false);
+SELECT pg_catalog.setval('users_id_seq', 19, true);
 
 
 --
@@ -413,14 +362,6 @@ ALTER TABLE ONLY tricks
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
--- Name: users_tricks_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
---
-
-ALTER TABLE ONLY users_tricks
-    ADD CONSTRAINT users_tricks_pkey PRIMARY KEY (id);
 
 
 --
