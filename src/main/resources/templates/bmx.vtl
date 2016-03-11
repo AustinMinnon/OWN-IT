@@ -1,57 +1,115 @@
 <div class = "main">
+  <div class="navbar navbar-inverse navbar-fixed-top transparentBackground">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse center">
+        <ul class="nav navbar-nav">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/skateboarding">Skateboard</a></li>
+          <li><a href="/snowboarding">Snowboard</a></li>
+          <li class="active"><a href="/bmx">BMX</a></li>
+          <li><a href="/skiing">Ski</a></li>
+          <li><a href="/add/trick">Add Trick</a></li>
+          <li><a href="/">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class = "container">
-    <h2>Hello $user.getName()</h1>
+    <h2 class="topMargin">Hello $user.getName()</h2>
     <h3><em>BMX<em> Trick List</h3>
     <hr>
     <h4><strong><em>Flatground:</strong></em></h4>
-    <div>
       #foreach ($trick in $userBmxTricksFlat)
-				<li>$trick.getName()</li>
-				<form action="/update/trick/$trick.getId()" method="get">
-					<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
-					<button type="submit" id="$trick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
-				</form>
-				<form action="/bmx/delete/trick/$trick.getId()" method="post">
-					<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
-					<button type="submit" id="$trick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
-				</form></li>
-			#end
+      <div class="flex-container">
+      <div class="btn-group bottomMargin">
+        <form class="btn btn-custom" action="/update/trick/$trick.getId()" method="get">
+          <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+          <button type="submit" id="$trick.getId()" class="btn-custom"><i class="fa fa-cog"></i> Update</button>
+        </form>
+        <p class="btn btn-custom thePadding">Category: $trick.getCategoryName()</p>
+        <p class="btn btn-custom thePadding">Name: $trick.getName() </p>
+        <p class="btn btn-custom thePadding">Rating: $trick.getRatingName() </p>
+        <p class="btn btn-custom thePadding">Date: $trick.getDate()</p>
+        <form class="btn btn-custom" action="/bmx/delete/trick/$trick.getId()" method="post">
+          <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+          <button type="submit" id="$trick.getId()" class="btn-custom"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+        </form>
+      </div>
+    </div>
+      #end
+    <hr>
+    <h4><strong><em>Flip Tricks:</strong></em></h4>
+    <div>
+      #foreach ($trick in $userBmxTricksFlip)
+      <div class="flex-container">
+      <div class="btn-group bottomMargin">
+        <form class="btn btn-custom" action="/update/trick/$trick.getId()" method="get">
+          <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+          <button type="submit" id="$trick.getId()" class="btn-custom"><i class="fa fa-cog"></i> Update</button>
+        </form>
+        <p class="btn btn-custom thePadding">Category: $trick.getCategoryName()</p>
+        <p class="btn btn-custom thePadding">Name: $trick.getName() </p>
+        <p class="btn btn-custom thePadding">Rating: $trick.getRatingName() </p>
+        <p class="btn btn-custom thePadding">Date: $trick.getDate()</p>
+        <form class="btn btn-custom" action="/bmx/delete/trick/$trick.getId()" method="post">
+          <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+          <button type="submit" id="$trick.getId()" class="btn-custom"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+        </form>
+      </div>
+    </div>
+      #end
     </div>
     <hr>
     <h4><strong><em>Grinds:</strong></em></h4>
     <div>
       #foreach ($trick in $userBmxTricksGrind)
-				<li>$trick.getName()</li>
-				<form action="/update/trick/$trick.getId()" method="get">
-					<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
-					<button type="submit" id="$trick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
-				</form>
-				<form action="/bmx/delete/trick/$trick.getId()" method="post">
-					<input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
-					<button type="submit" id="$trick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
-				</form></li>
-			#end
+      <div class="flex-container">
+      <div class="btn-group bottomMargin">
+        <form class="btn btn-custom" action="/update/trick/$trick.getId()" method="get">
+          <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+          <button type="submit" id="$trick.getId()" class="btn-custom"><i class="fa fa-cog"></i> Update</button>
+        </form>
+        <p class="btn btn-custom thePadding">Category: $trick.getCategoryName()</p>
+        <p class="btn btn-custom thePadding">Name: $trick.getName() </p>
+        <p class="btn btn-custom thePadding">Rating: $trick.getRatingName() </p>
+        <p class="btn btn-custom thePadding">Date: $trick.getDate()</p>
+        <form class="btn btn-custom" action="/bmx/delete/trick/$trick.getId()" method="post">
+          <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
+          <button type="submit" id="$trick.getId()" class="btn-custom"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+        </form>
+      </div>
+    </div>
+    #end
   </div>
   <hr>
     <h4><strong><em>Airs:</strong></em></h4>
     <div>
       #foreach ($trick in $userBmxTricksAir)
-        <li>$trick.getName()</li>
-        <form action="/update/trick/$trick.getId()" method="get">
+      <div class="flex-container">
+      <div class="btn-group bottomMargin">
+        <form class="btn btn-custom" action="/update/trick/$trick.getId()" method="get">
           <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
-          <button type="submit" id="$trick.getId()" class="btn btn-warning"><i class="fa fa-cog"></i> Update</button>
+          <button type="submit" id="$trick.getId()" class="btn-custom"><i class="fa fa-cog"></i> Update</button>
         </form>
-        <form action="/bmx/delete/trick/$trick.getId()" method="post">
+        <p class="btn btn-custom thePadding">Category: $trick.getCategoryName()</p>
+        <p class="btn btn-custom thePadding">Name: $trick.getName() </p>
+        <p class="btn btn-custom thePadding">Rating: $trick.getRatingName() </p>
+        <p class="btn btn-custom thePadding">Date: $trick.getDate()</p>
+        <form class="btn btn-custom" action="/bmx/delete/trick/$trick.getId()" method="post">
           <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
-          <button type="submit" id="$trick.getId()" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
-        </form></li>
-      #end
+          <button type="submit" id="$trick.getId()" class="btn-custom"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
+        </form>
+      </div>
     </div>
-    <a href="/">Logout</a>
-    <a href="/add/trick">Add Trick</a>
-    <hr>
-    <div class="smalltext">
-      <a href="/home">Home</a>
+      #end
     </div>
   </div>
 </div>
+<img id="gif-background" src="/img/snowgrab.gif" alt="snowboard-flip" />
