@@ -1,13 +1,13 @@
 <div class="center">
   <div class="transparentwhitebox">
     <h2>Add New User</h2>
-    <p class="login-label">Enter A Name</p>
+    <p class="login-label">Enter Your Name</p>
     <form action='/' method='post'>
       <input id="username" name="username" type="text" autofocus="true">
       <button type='submit' class='btn btn-primary btntextcolor'>Add Me</button>
     </form>
     #if ($duplicateuserrequested)
-      <p>That name is already in use. Please try a different name</p>
+      <p>Please enter a different name</p>
     #elseif (!($duplicateuserrequested))
     #end
     <a class="linkBlack" href="/">Back to Login Page</a>
