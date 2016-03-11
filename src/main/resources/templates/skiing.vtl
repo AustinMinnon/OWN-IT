@@ -58,7 +58,7 @@
         <p class="btn btn-custom thePadding">Name: $trick.getName() </p>
         <p class="btn btn-custom thePadding">Rating: $trick.getRatingName() </p>
         <p class="btn btn-custom thePadding">Date: $trick.getDate()</p>
-        <form class="btn btn-custom" action="/ski/delete/trick/$trick.getId()" method="post">
+        <form class="btn btn-custom" action="/skiing/delete/trick/$trick.getId()" method="post">
           <input id="trickId" name="trickId" type="hidden" value="$trick.getId()">
           <button type="submit" id="$trick.getId()" class="btn-custom"><i class="fa fa-trash-o fa-lg"></i> Delete Trick</button>
         </form>
