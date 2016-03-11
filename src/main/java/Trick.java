@@ -41,7 +41,7 @@ public class Trick {
   }
 
   public String getRatingName() {
-    if (rating_id == 1) {
+    if (rating_id == 2) {
       return "Clean";
     } else {
       return "Sloppy";
