@@ -94,20 +94,30 @@
   font-size: 150%;
 }
 
-.linkBlack {
-  color: black;
-  font-size: 150%;
-}
-
-.btntextcolor {
-  color: black;
-}
-
 .link:hover {
   color: #337ab7;
   font-weight: bolder;
   text-decoration: none;
   font-size: 150%;
+}
+
+.linkBlack {
+  color: black;
+  font-weight: bolder;
+  text-decoration: none;
+  font-size: 150%;
+}
+
+.linkBlack:hover {
+  color: #337ab7;
+  font-weight: bolder;
+  text-decoration: none;
+  font-size: 150%;
+
+}
+
+.btntextcolor {
+  color: black;
 }
 
 .login-label {
@@ -154,11 +164,11 @@
   color: #565a5c;
   border: 0;
   padding: 8px;
-  line-height: 19px;
-  font-size: 16px;
+  line-height: 20px;
+  font-size: 19px;
   border-radius: 0;
   outline: 0;
-  border-right: 1px solid rgba(0,0,0,0.2);
+  border-right: 1px solid rgba(0,0,0,0.3);
   -/*webkit-appearance: none;*/
 }
 
@@ -176,12 +186,12 @@
 
 .flex-form{
   display: flex;
-  border: 15px solid rgba(0,0,0,0.3);
-  border-radius: 6px;
+  border: 12px solid rgba(0,0,0,0.3);
+  border-radius: 5px;
 }
 
 input[type="search"] {
-  flex-basis:370px;
+  flex-basis:350px;
 }
 
 #trickbutton{
