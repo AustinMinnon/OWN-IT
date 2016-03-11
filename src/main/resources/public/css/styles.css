@@ -89,8 +89,11 @@
 
 .link {
   color: white;
+  font-weight: bolder;
+  text-decoration: none;
   font-size: 150%;
 }
+
 .linkBlack {
   color: black;
   font-size: 150%;
@@ -104,6 +107,7 @@
   color: #337ab7;
   font-weight: bolder;
   text-decoration: none;
+  font-size: 150%;
 }
 
 .login-label {
