@@ -26,12 +26,7 @@ Open a new tab in terminal and run this:
 ```
 $ psql
 create database own_it;
-\c own_it
-create table categories (id serial PRIMARY KEY, name varchar);
-create table sports (id serial PRIMARY KEY, name varchar);
-create table tricks (id serial PRIMARY KEY, name varchar, rating int, date varchar, category_id int, user_id int, sport_id int);
-create table users (id serial PRIMARY KEY, name varchar);
-create database own_it_test with template own_it;
+psql own_it < own_it.sql
 
 ```
 
@@ -40,7 +35,7 @@ Navigate back to the directory where this repository has been cloned and run gra
 $ gradle run
 ```
 ## Known Bugs
-no known bugs.
+*This application stores each user in a session; therefore navigating url's manually WILL BREAK, and result in a 500 error*
 
 ## Technologies Used
 
